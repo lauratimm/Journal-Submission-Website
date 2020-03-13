@@ -1,10 +1,9 @@
 body{
     margin: 0;
     padding: 0;
-    background: url(images.jpg);
     opacity: 0.75;
     background-size:cover;
-    background-position: top;
+    background-image: url("../staticfiles/images.jpg");
     font-family: sans-serif;
 
 }
@@ -90,6 +89,6 @@ body{
 loginbox a:hover
 {
     color: #ffc107;
-    
+
 
 }
