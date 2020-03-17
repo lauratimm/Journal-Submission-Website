@@ -1,11 +1,16 @@
+#wrap{
+    width:1200px;
+    margin: 0 auto;
+}
+
 body{
     margin: 0;
     padding: 0;
+    background: url("images.jpg");
     opacity: 0.75;
     background-size:cover;
-    background-image: url("images.jpg");
-    font-family: sans-serif;
-
+    background-position: top;
+    font-family: "Century Gothic";
 }
 
 .loginbox{
@@ -89,6 +94,4 @@ body{
 loginbox a:hover
 {
     color: #ffc107;
-
-
 }
