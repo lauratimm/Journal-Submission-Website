@@ -3,7 +3,7 @@ body{
     padding: 0;
     opacity: 0.75;
     background-size:cover;
-    background-image: url("../staticfiles/images.jpg");
+    background-image: url("images.jpg");
     font-family: sans-serif;
 
 }
