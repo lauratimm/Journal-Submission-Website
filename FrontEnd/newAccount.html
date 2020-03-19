@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>newAccount</title>
+    <link rel="stylesheet" href = "https://maxcdn.bootstrapcdn.com/dont-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type = "text/css" href="../static/authorDash.css">
+</head>
+<body>
+
+    <div id="wrap">
+        <div class = "container">
+            <h2>Sign up for your account here</h2>
+            <form action = "newAccount_page.php">
+                <label for = "firstname">First Name</label><br>
+                <input type = "text" id = "firstname" placeholder="First Name" style = "height: 35px; width: 500px"><br><br>
+
+                <label for = "lastname">Last Name</label><br>
+                <input type = "text" id = "lastname" placeholder="Last Name" style = "height: 35px; width: 500px"><br><br>
+
+                <label for = "email">E-mail</label><br>
+                <input type = "email" id = "email" placeholder="myemail@institute.com" style = "height: 35px; width: 500px"><br><br>
+
+                <label for = "ID">ID</label><br>
+                <input type = "text" id = "ID" placeholder="12345678" style="height:35px; width:500px; align: "><br><br>
+
+                <label for = "institution">Institution</label><br>
+                <select id = "institution" name = "abstract" placeholder="Y" style ="height: 45px; width: 500px">
+                    <option value="UofC">University of Calgary</option>
+                    <option value="UofA">University of Alberta</option>
+                    <option value="MRU">Mount Royal University</option>
+                    <option value="ConcordiaU">Concordia University</option>
+                    <option value="UofL">University of Lethbridge</option>
+                    <option value="AthabascaU">University of Athabasca</option>
+                    <option value="KingsU">King's University</option>
+                    <option value="MacEwanU">MacEwan University</option>
+                    </select><br>
+
+                <label for="username">Username</label><br>
+                <input type = "text" id = "username" placeholder="user.name" style = "height:35px; width: 500px"><br>
+
+
+                <label for ="password">Password</label><br>
+                <input type = "password" id = "password" placeholder="*******" style = "height: 35px; width:500px"><br><br>
+
+                <input type = "button" value = "Sign Up" onclick = "signup()">
+            </form>
+    </div>
+
+</body>
+</html>
