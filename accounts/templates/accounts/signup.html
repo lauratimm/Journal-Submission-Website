@@ -1,28 +1,23 @@
 
 <!DOCTYPE html>
 <html lang="en">
-{% block content %}
+
 <head>
     <meta charset="UTF-8">
-    <title>newAccount</title>
+    <title>New Account</title>
     <link rel="stylesheet" href = "https://maxcdn.bootstrapcdn.com/dont-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type = "text/css" href="../static/authorDash.css">
+    <link rel="stylesheet" type = "text/css" href='authorDash.css'>
 </head>
-
-    <meta charset="UTF-8">
-    <title>Signup</title>
-    <h1>Sign up</h1>
-    <form class="site-form" action ="index.html" method="post">
-       {{ form }}
-        <input type="submit"value="Signup">
-    </form>
 
 <body>
 
     <div id="wrap">
         <div class = "container">
             <h2>Sign up for your account here</h2>
-            <form action = "newAccount_page.php">
+            <form class="siteform" action="/accounts/signup" method="post"
+
+            {{ form }}
+
                 <label for = "firstname">First Name</label><br>
                 <input type = "text" id = "firstname" placeholder="First Name" style = "height: 35px; width: 500px"><br><br>
 
@@ -54,10 +49,9 @@
                 <label for ="password">Password</label><br>
                 <input type = "password" id = "password" placeholder="*******" style = "height: 35px; width:500px"><br><br>
 
-                <input type = "button" value = "Sign Up" onclick = "signup()">
+                <input type = "submit" value = "Signup" onclick = "signup()">
             </form>
     </div>
 
 </body>
-{% endblock %}
 </html>
