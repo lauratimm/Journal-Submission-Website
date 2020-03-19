@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Author Dashboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content ="IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale =1">
+    <link rel="stylesheet" href = "https://maxcdn.bootstrapcdn.com/dont-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type = "text/css" href="authorDash.css">
+    <script src = "https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src = "topNav.js"></script>
+
+</head>
+<body>
+<div id = "wrap"
+    <div class="topnav" id="authorTopnav">
+        <a href = "HomePage.html">Logout</a>
+        <a href="#mysubmissions">My Submissions</a>
+        <a href="#newsubmission">New Submission</a>
+    </div>
+
+    <div class =mysubmission>
+        <div class = "container1">
+            <h2>Current Submissions being processed</h2>
+
+            
+
+    </div>
+
+    <div class="new =submission"></div>
+
+            <div class = "container2">
+                <h2>New Submission</h2>
+                <form action = "submission_page.php">
+                    <label for = "Title"> Title</label><br>
+                    <input type = "text" id = "title" placeholder="Your Title Here" style = "height: 35px; width: 500px"><br><br>
+
+                     <label for = "Authors">Authors</label><br>
+                    <input type = "text" id = "authors" placeholder="List of authors here" style = "height: 35px; width: 500px"><br><br>
+
+                    <label for = "abstract">Abstract</label><br>
+                    <textarea id = "abstract" name = "abstract" placeholder="Your abstract here" style ="height: 200px; width: 500px">
+
+                    </textarea><br>
+
+                    <label for="JournalList">Journal</label><br>
+                    <select id="journalList" name="journalList" style ="height: 45px; width:500px">
+                        <option value="IEEE">Institute of Electrical and Electronics Engineers (IEEE)</option>
+                        <option value="algorithmica">Algorithmica</option>
+                        <option value="cryptology">Journal of Cryptology</option>
+                    </select><br><br>
+
+                    <label for = "fileUpload">Upload File (.pdf)</label><br><br>
+                    <!--<input type = "text" id = "fileName" placeholder="myFile.PDF" style = "height: 35px; width: 500px">-->
+                    <input type = "file" id = "fileUpload" placeholder="myFile.PDF" style = "height: 35px; width: 500px ">
+                    <br><br>
+                    <label for = "reviewer1">Suggested Reviewer #1</label><br>
+                    <!--hardcoded, will change with django-->
+                    <select id = "reviewer1" name = "reviewer1" style = "height:45px; width:500px">
+                        <option value = "reviewer1">reviewer A</option>
+                        <option value = "reviewer1">reviewer B</option>
+                        <option value = "reviewer1">reviewer C</option>
+                    </select><br>
+
+                    <label for = "reviewer2">Suggested Reviewers #2</label><br>
+                    <select id = "reviewer2" name = "reviewer2" style = "height:45px; width:500px">
+                        <!--hardcoded, will change with django-->
+                        <option value = "reviewer2">reviewer A</option>
+                        <option value = "reviewer2">reviewer B</option>
+                        <option value = "reviewer2">reviewer C</option>
+                    </select><br>
+
+                    <label for = "reviewer3">Suggested Reviewers #3</label><br>
+                    <!--hardcoded, will change with django-->
+                    <select id = "reviewer3" name = "reviewer3" style = "height:45px; width:500px">
+                        <option value = "reviewer3">reviewer A</option>
+                        <option value = "reviewer3">reviewer B</option>
+                        <option value = "reviewer3">reviewer C</option>
+                    </select><br>
+
+                    <input type = "button" value = "Submit" onclick = "submit()">
+                    <input type = "button" value = "Save" onclick = "save()">
+                </form>
+            </div>
+    </div>
+</body>
+</html>
