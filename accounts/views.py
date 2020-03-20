@@ -8,11 +8,13 @@ def signup_view(request):
         if form.is_valid():
             form.save()
             #log the user in
-            return redirect('views.submission') #add redirect 'module:list'
-        #in articles urls
-        #urlpatterns=[
+            return redirect('home:views.index')
+        # add redirect 'module:list'
+        # in articles urls
+        # urlpatterns=[
         #   url('', views.article_list, name="list")
 
-    form = UserCreationForm()
+    else:
+        form = UserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
