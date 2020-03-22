@@ -1,0 +1,8 @@
+from django.conf.urls import url
+from . import views
+
+app_name = 'submission'
+
+urlpatterns = [
+    url('^$', views.submission_view, name='submission')]
+
