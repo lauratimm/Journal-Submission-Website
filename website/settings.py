@@ -26,7 +26,7 @@ SECRET_KEY = 'yi@u2izcbiq$ap$h27dz3r+&6krdk1+)hrb#+jn-z8(^7(^10p'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-APPEND_SLASH=False
+
 
 # Application definition
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'submission',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'laura',
+        'NAME': 'seng300',
         'USER': 'root',
         'PASSWORD': 'poop1234',
         'HOST': 'localhost',
