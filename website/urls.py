@@ -25,7 +25,6 @@ urlpatterns = [
     url('accounts/', include('accounts.urls')),
     url('submission/', include('submission.urls')),
     path('login/', views.login),
-    #path('submission/logout/', views.home),
     path('', views.home),
 ]
 
