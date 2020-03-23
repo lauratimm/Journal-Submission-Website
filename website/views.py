@@ -7,6 +7,4 @@ def home(request):
 def login(request):
     return render(request, 'loginPage.html')
 
-def submission(request):
-    return render(request, 'authorHome.html')
 
