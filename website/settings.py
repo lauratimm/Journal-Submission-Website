@@ -26,13 +26,14 @@ SECRET_KEY = 'yi@u2izcbiq$ap$h27dz3r+&6krdk1+)hrb#+jn-z8(^7(^10p'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+APPEND_SLASH= True
 
 # Application definition
 
 INSTALLED_APPS = [
     # these are the tables from the database #
     'home.apps.HomeConfig',
+    'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,29 +75,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'website.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+#Database
+#https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'seng300',
         'USER': 'root',
-        'PASSWORD': 'poop1234',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
