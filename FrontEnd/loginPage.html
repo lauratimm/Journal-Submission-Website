@@ -15,22 +15,24 @@
     <h1>
         Login Here
     </h1>
-    <form>
-        <p>Username</p>
+    <form method = POST action="." class=""contact100-form validate-form>
+        {% csrf_token %}
+         <p>Username</p>
         <label>
-            <input type = "text" name = "" placeholder = "Enter Username">
+            <input type = "text" name = "username" placeholder = "Enter Username">
         </label>
         <p>Password</p>
         <label>
-            <input type = "password" name = "" placeholder="Enter Password">
+            <input type = "password" name = "password" placeholder="Enter Password">
         </label>
-        <input type = "submit" name = "" value = "login">
+        <input type = "submit" name = "submit" value = "login">
         <a href = "/forgotpassword">Forgot your password?</a>
         <br>
         <a href = "/accounts/signup/">Create a new account</a>
 
         <a href="javascript:void(0);" class="icon" onclick="topNavFunction()">
         <i class="fa fa-bars"></i>
+    </a>
     </a>
     </form>
 
