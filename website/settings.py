@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # these are the tables from the database #
     'home.apps.HomeConfig',
+    'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'submission',
+    #dataflair #file Upload in django
+    'profile_maker',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +141,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, '../website')
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, '../website/staticfiles'), ]
 
+
+LOGIN_REDIRECT_URL = '/account/list/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'profile_maker/../media')
