@@ -30,10 +30,11 @@
     <div class="new =submission"></div>
         <h2>New Submission</h2>
 
-
+    {% block content %}
             <div class = "container">
-                <form action = "submission_page.php">
+                <form action = "" method="post">
                     <label for = "Title"> Title</label><br>
+                    {% csrf_token %}
                     <input type = "text" id = "title" placeholder="Your Title Here" style = "height: 35px; width: 500px"><br><br>
 
                      <label for = "Authors">Authors</label><br>
@@ -81,6 +82,7 @@
                 </form>
             </div>
     </div>
+    {% endblock %}
     </center>
 </body>
 </html>
