@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'submission',
+    #dataflair #file Upload in django
+    'profile_maker',
 ]
 
 MIDDLEWARE = [

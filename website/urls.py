@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import include, url
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 
@@ -26,6 +26,7 @@ urlpatterns = [
     url('submission/', include('submission.urls')),
     path('login/', views.login),
     path('', views.home),
+    path('upload/', include('profile_maker.urls')),
 ]
 
 
