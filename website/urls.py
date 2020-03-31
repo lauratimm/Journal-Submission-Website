@@ -23,7 +23,6 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url('home/', include('home.urls')),
     url('accounts/', include('accounts.urls')),
-    url('submission/', include('submission.urls')),
     path('login/', views.login),
     path('', views.home),
     path('upload/', include('profile_maker.urls')),

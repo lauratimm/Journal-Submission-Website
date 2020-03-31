@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
-    'submission',
     #dataflair #file Upload in django
     'profile_maker',
 ]
