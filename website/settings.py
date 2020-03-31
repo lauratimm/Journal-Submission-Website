@@ -144,5 +144,6 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = '/account/list/'
 
+#this is for the pdf's that are stored then reused throughout the program
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'profile_maker/../media')
