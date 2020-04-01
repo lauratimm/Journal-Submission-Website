@@ -11,7 +11,7 @@ class Submission(models.Model):
   REJECTED = 'REJ'
   ACCEPTED = 'ACC'
   
-  title = models.CharField()  #paper will have a title
+  title = models.CharField(max_length = 250)  #paper will have a title
   slug = models.SlugField()   #paper will have a URL of somesort
   file = models.FileField() #can also add a parameter to upload it to some where
   
@@ -20,7 +20,7 @@ class Submission(models.Model):
   STATUS_CHOICES = [
                    (SUBMITTED, 'Submitted'),
                    (REVIEWED, 'Reviewed'),
-                   (ACCEPTED), 'Accepted',
+                   (ACCEPTED, 'Accepted'),
                    (REJECTED, 'Rejected'),
                    ]
   
