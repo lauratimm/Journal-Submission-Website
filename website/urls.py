@@ -24,8 +24,11 @@ urlpatterns = [
     url('home/', include('home.urls')),
     url('accounts/', include('accounts.urls')),
 
-    path('login/', views.login),
+    path('login/', views.loginRequest),
     path('', views.home),
     path('upload/', include('profile_maker.urls')),
+    path('authorDash/', include('userPages.urls')),
+    path('editorDash/', include('userPages.urls')),
+    path('reviewerDash/', include('userPages.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

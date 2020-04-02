@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # these are the tables from the database #
     'home.apps.HomeConfig',
-    'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
 
     #dataflair #file Upload in django
     'profile_maker',
+    'userPages'
 ]
 
 MIDDLEWARE = [
