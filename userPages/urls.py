@@ -1,10 +1,13 @@
 from django.urls import path
 from . import views
+from django.conf.urls import include, url
+
 from website import settings
 from django.conf.urls.static import static
 urlpatterns = [
-    path('', views.author),
-    path('', views.reviewer),
-    path('', views.editor),
+    url('authorDash/', views.author),
+    url('reviewerDash/', views.reviewer),
+    url('editorDash/', views.editor),
 
+    path('viewSubmissions/', views.reviewer_view_submissions, name='Submission View')
 ]
