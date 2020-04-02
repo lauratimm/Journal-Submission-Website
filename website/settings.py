@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # these are the tables from the database #
     'home.apps.HomeConfig',
-    'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,9 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
-    'submission',
+
     #dataflair #file Upload in django
     'profile_maker',
+    'userPages'
 ]
 
 MIDDLEWARE = [
@@ -82,14 +82,21 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'seng300',
-        'USER': 'root',
-        'PASSWORD': 'poop1234',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'seng300',
+#         'USER': 'root',
+#         'PASSWORD': 'poop1234',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -144,5 +151,6 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = '/account/list/'
 
+#this is for the pdf's that are stored then reused throughout the program
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'profile_maker/../media')
