@@ -1,13 +1,12 @@
 from django.conf.urls import include, url
 from django.urls import path
 from . import views
-
 from website import settings
 from django.conf.urls.static import static
-
 from .views import author_view_journals, author_profile
 
 urlpatterns = [
+
     url('authorDash/', views.author),
     url('reviewerDash/', views.reviewer),
     url('editorDash/', views.editor),
@@ -17,6 +16,8 @@ urlpatterns = [
     path('upload/', views.create_profile, name = 'create'),
     path('journals/', author_view_journals, name = 'Journal View'),
     path('about/', author_profile, name = 'Author Profile'),
+    path('viewSubmissions/', views.reviewer_view_submissions, name='Submission View')
+
 ]
 
 if settings.DEBUG:

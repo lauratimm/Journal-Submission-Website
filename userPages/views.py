@@ -12,10 +12,11 @@ def author(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
-    dashVariable = "/upload"
 
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+    dashVariable = "upload/"
+
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
+
     return render(request, 'authorDashboard.html', args)
 
 
@@ -24,10 +25,10 @@ def reviewer(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
-    dashVariable = "/proposal_list"
+    dashVariable = "/viewSubmissions"
 
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
+
     return render(request, 'reviewerDashboard.html', args)
 
 
@@ -160,3 +161,4 @@ def author_profile(request):
 
     }
     return render(request, 'author/author_profile.html', context=profile)
+
