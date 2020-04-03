@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
-from userPages.models import Paper
+from userPages.models import Paper, Journal, Proposal, Institution, Comment
+from home.models import User
 
 
 def author(request):

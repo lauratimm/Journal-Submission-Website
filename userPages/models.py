@@ -7,7 +7,7 @@ from django.urls import reverse  # Used to generate URLs by reversing the URL pa
 
 class Paper(models.Model):
     """Model representing a book (but not a specific copy of a book)."""
-    paper_id = models.IntegerField(max_length=10)
+    paper_id = models.IntegerField(primary_key=True, max_length=10)
     author = models.ForeignKey(User, related_name='%(class)s_author', on_delete=models.SET_NULL, null=True)
     version = models.IntegerField(max_length=10)
     upload_date = models.DateField(blank=True, null=True)
@@ -22,7 +22,7 @@ class Paper(models.Model):
 
 
 class Journal(models.Model):
-    journal_id = models.IntegerField(max_length=10)
+    journal_id = models.IntegerField(primary_key=True, max_length=10)
     name = models.TextField(max_length=100)
     # Maybe foreign key
     institution = models.TextField(max_length=100)
@@ -33,15 +33,15 @@ class Journal(models.Model):
 
 
 class Institution(models.Model):
-    name = models.TextField(max_length=100)
+    name = models.TextField(primary_key=True, max_length=100)
     address = models.TextField(max_length=200)
 
     def __self__(self):
         return self.name
-    
+
 
 class Proposal(models.Model):
-    proposal_id = models.IntegerField(max_length=10)
+    proposal_id = models.IntegerField(primary_key=True, max_length=10)
     author = models.ForeignKey(User, related_name='%(class)s_author', on_delete=models.SET_NULL, null=True)
     reviewer_1 = models.ForeignKey(User, related_name='%(class)s_reviewer_1', on_delete=models.SET_NULL, null=True)
     reviewer_2 = models.ForeignKey(User, related_name='%(class)s_reviewer_2', on_delete=models.SET_NULL, null=True)
@@ -53,16 +53,22 @@ class Proposal(models.Model):
     upload_date = models.DateTimeField(blank=True, null=True)
     version = models.IntegerField(max_length=10)
 
+    class Meta:
+        ordering = ['upload_date']
+
     def __self__(self):
         return self.proposal_id
 
 
 class Comment(models.Model):
-    comment_id = models.IntegerField(max_length=20)
+    comment_id = models.IntegerField(primary_key=True, max_length=20)
     proposal_id = models.ForeignKey(Proposal, related_name='%(class)s_proposal_id', on_delete=models.SET_NULL, null=True)
     reviewer_id = models.ForeignKey(User, related_name='%(class)s_reviewer', on_delete=models.SET_NULL, null=True)
     paper_version = models.IntegerField(max_length=10)
     text = models.TextField(max_length=500)
+
+    class Meta:
+        ordering = ['proposal_id']
 
     def __self__(self):
         return self.comment_id
