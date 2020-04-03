@@ -1,3 +1,4 @@
+
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
@@ -6,6 +7,18 @@ from userPages.forms import Profile_Form
 import io
 from reportlab.pdfgen import canvas
 
+''' This page makes all of the dashboards render their respective html templates, with arguments passed in for
+the differing options for the users.
+
+Author: Alexandra Tenney and Anna Chaykovska
+
+Date Created: April 1, 2020
+>>>>>>> added comments to base.html, authorDashboard, editorDashboard, reviewerDashbaord, userPages/urls.py and userPages/view.py
+
+Date Updated: April 2, 2020
+'''
+
+from django.shortcuts import render
 
 def author(request):
     function1 = "Submissions"
