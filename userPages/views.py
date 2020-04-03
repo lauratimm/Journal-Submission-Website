@@ -40,9 +40,22 @@ def editor(request):
     return render(request, 'editorDashboard.html', args)
 
 
-def reviewer_view_submissions(request):
-    return render(request, 'reviewerListViewPage.html')
+def reviewer_view_proposals(request):
+    # Generate counts for proposals
+    num_proposals = Proposal.objects.all().count()
+
+    # Filter by reviewer
+    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_1 = me).count()
+    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_2=me).count()
+    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_3=me).count()
+
+    context = {
+        'num_proposals': num_proposals,
+    }
+
+    return render(request, 'reviewerListViewPage.html', context=context)
 
 
-class ReviewerPaperListView(generic.ListView):
-    model = Paper
+class ReviewerProposalListView(generic.ListView):
+    model = Proposal
+    context_object_name = 'Proposals to Review'

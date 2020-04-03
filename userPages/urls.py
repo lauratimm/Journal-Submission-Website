@@ -9,5 +9,5 @@ urlpatterns = [
     url('reviewerDash/', views.reviewer),
     url('editorDash/', views.editor),
 
-    path('viewSubmissions/', views.reviewer_view_submissions, name='Submission View')
+    path('viewSubmissions/', views.reviewer_view_proposals, name='Submission View')
 ]
