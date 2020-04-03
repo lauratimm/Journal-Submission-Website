@@ -10,10 +10,11 @@ def home(request):
     function2 = "Journals"
     function3 = "About Us"
     function4 = "Login"
+    dashVariable = "/contact"
 
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3}
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable}
     return render(request, 'HomePage.html', args)
-
 
 # when view.login is called will send to loginPage.html
 def loginRequest(request):
