@@ -9,11 +9,6 @@ urlpatterns = [
     url('reviewerDash/', views.reviewer),
     url('editorDash/', views.editor),
 
-<<<<<<< HEAD
-]
-||||||| 07238a2
-]
-=======
     path('viewSubmissions/', views.reviewer_view_submissions, name='Submission View')
 ]
->>>>>>> anna_branch
+
