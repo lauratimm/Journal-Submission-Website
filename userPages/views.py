@@ -6,8 +6,9 @@ def author(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
+    dashVariable = "upload/"
 
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3}
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
     return render(request, 'authorDashboard.html', args)
 
 
@@ -16,8 +17,9 @@ def reviewer(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
+    dashVariable = "/viewSubmissions"
 
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3}
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
     return render(request, 'reviewerDashboard.html', args)
 
 
@@ -26,6 +28,11 @@ def editor(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
+    dashVariable = "/viewReviews"
 
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3}
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
     return render(request, 'editorDashboard.html', args)
+
+
+def reviewer_view_submissions(request):
+    return render(request, 'reviewerListViewPage.html')
