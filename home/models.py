@@ -7,6 +7,7 @@ class User(models.Model):
     editor = models.CharField(max_length=250)
     adm = models.CharField(max_length=250)
 
+
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # Article must belong to a user, set this up better

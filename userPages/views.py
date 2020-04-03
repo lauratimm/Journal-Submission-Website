@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views import generic
+from userPages.models import Paper
 
 
 def author(request):
@@ -39,3 +41,7 @@ def editor(request):
 
 def reviewer_view_submissions(request):
     return render(request, 'reviewerListViewPage.html')
+
+
+class ReviewerPaperListView(generic.ListView):
+    model = Paper
