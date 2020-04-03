@@ -11,10 +11,9 @@ class Paper(models.Model):
     author = models.ForeignKey(User, related_name='%(class)s_author', on_delete=models.SET_NULL, null=True)
     version = models.IntegerField(max_length=10)
     upload_date = models.DateField(blank=True, null=True)
-#    file = someway to store files
+    file = models.FileField()
 
     def __str__(self):
-        """String for representing the Model object."""
         return self.paper_id
 
     def get_absolute_url(self):
@@ -39,8 +38,8 @@ class Proposal(models.Model):
     reviewer_1 = models.ForeignKey(User, related_name='%(class)s_reviewer_1', on_delete=models.SET_NULL, null=True)
     reviewer_2 = models.ForeignKey(User, related_name='%(class)s_reviewer_2', on_delete=models.SET_NULL, null=True)
     reviewer_3 = models.ForeignKey(User, related_name='%(class)s_reviewer_3', on_delete=models.SET_NULL, null=True)
-    #  author_file = someway to store files
-    #  reviewer_file = someway to store files
+    author_file = models.FileField()
+    reviewer_file = models.FileField()
     status = models.TextField(max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
     upload_date = models.DateTimeField(blank=True, null=True)
