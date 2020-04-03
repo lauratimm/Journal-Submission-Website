@@ -11,7 +11,7 @@ class Paper(models.Model):
     author = models.ForeignKey(User, related_name='%(class)s_author', on_delete=models.SET_NULL, null=True)
     version = models.IntegerField(max_length=10)
     upload_date = models.DateField(blank=True, null=True)
-    file = models.FileField()
+    file = models.FileField(null=True, blank=True)
 
     def __str__(self):
         return self.paper_id
@@ -32,14 +32,22 @@ class Journal(models.Model):
         return self.journal_id
 
 
+class Institution(models.Model):
+    name = models.TextField(max_length=100)
+    address = models.TextField(max_length=200)
+
+    def __self__(self):
+        return self.name
+    
+
 class Proposal(models.Model):
     proposal_id = models.IntegerField(max_length=10)
     author = models.ForeignKey(User, related_name='%(class)s_author', on_delete=models.SET_NULL, null=True)
     reviewer_1 = models.ForeignKey(User, related_name='%(class)s_reviewer_1', on_delete=models.SET_NULL, null=True)
     reviewer_2 = models.ForeignKey(User, related_name='%(class)s_reviewer_2', on_delete=models.SET_NULL, null=True)
     reviewer_3 = models.ForeignKey(User, related_name='%(class)s_reviewer_3', on_delete=models.SET_NULL, null=True)
-    author_file = models.FileField()
-    reviewer_file = models.FileField()
+    author_file = models.FileField(null=True, blank=True)
+    reviewer_file = models.FileField(null=True, blank=True)
     status = models.TextField(max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
     upload_date = models.DateTimeField(blank=True, null=True)
