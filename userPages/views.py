@@ -1,5 +1,14 @@
-from django.shortcuts import render
+''' This page makes all of the dashboards render their respective html templates, with arguments passed in for
+the differing options for the users.
 
+Author: Alexandra Tenney and Anna Chaykovska
+
+Date Created: April 1, 2020
+
+Date Updated: April 2, 2020
+'''
+
+from django.shortcuts import render
 
 def author(request):
     function1 = "Submissions"
