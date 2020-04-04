@@ -9,6 +9,6 @@ urlpatterns = [
     url('reviewerDash/', views.reviewer),
     url('editorDash/', views.editor),
 
-    path('viewSubmissions/', views.reviewer_view_submissions, name='Submission View')
+    path('proposal_list/', views.reviewer_view_proposals, name='Proposal View'),
+    path('proposal/<int:pk>', views.ProposalDetailView.as_view(), name='proposal-detail'),
 ]
-
