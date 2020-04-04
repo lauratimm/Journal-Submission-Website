@@ -10,7 +10,7 @@ def author(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
-    dashVariable = "/authorSubmit"
+    dashVariable = "/upload"
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
             'dashVariable': dashVariable}
@@ -46,7 +46,7 @@ def reviewer_view_proposals(request):
     num_proposals = Proposal.objects.all().count()
 
     # Filter by reviewer
-    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_1 = me).count()
+    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_1 = me).count()gi
     # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_2=me).count()
     # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_3=me).count()
 
