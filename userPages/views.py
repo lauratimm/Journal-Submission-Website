@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 from django.views import generic
 from userPages.models import Paper, Journal, Proposal, Institution, Comment
@@ -21,7 +22,7 @@ def reviewer(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
-    dashVariable = "/viewSubmissions"
+    dashVariable = "/proposal_list"
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
             'dashVariable': dashVariable}
@@ -53,9 +54,19 @@ def reviewer_view_proposals(request):
         'num_proposals': num_proposals,
     }
 
-    return render(request, 'reviewerListViewPage.html', context=context)
+    return render(request, 'proposal_list.html', context=context)
 
 
 class ReviewerProposalListView(generic.ListView):
     model = Proposal
     context_object_name = 'Proposals to Review'
+    template_name = 'proposals/proposal_list.html'
+
+    # def get_queryset(self):
+    #     # return Proposal.objects.filter(reviewer_1__icontains='id')
+    #     return Proposal.objects
+
+
+class ProposalDetailView(generic.DetailView):
+    model = Proposal
+
