@@ -39,6 +39,9 @@ class Proposal(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
 
+    def __str__(self):
+        return self.author_file
+
 
 class Comment(models.Model):
     proposal = models.ForeignKey('Proposal', related_name='%(class)s_proposal_id', on_delete=models.SET_NULL, null=True)

@@ -1,0 +1,24 @@
+{#Source: https://data-flair.training/blogs/django-file-upload/#}
+{#Author: Laura Timm#}
+{#Date Created: March 29, 2020#}
+{#This extends file html page, used when the file is successfully uploaded #}
+
+{% extends 'profile_maker/create.html' %}
+
+{% block replace %}
+<CENTER>
+<div class="jumbotron">
+    <h2 class="display-4">Thank You <br> </h2>
+  <p class="lead">Your submission has been uploaded successfully<br></p>
+  <hr class="my-4">
+    <object data="{{ user_pr.author_file.url }}" type="application/pdf" width="100%" height="100%">
+  <p>Alternative text - include a link <a href="{{ user_pr.author_file.url }}">to the PDF!</a></p>
+</object>
+
+
+
+    {{ user_pr.author_file.url }}<BR>
+
+</div>
+</CENTER>
+{% endblock %}
