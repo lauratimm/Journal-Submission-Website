@@ -54,7 +54,8 @@ def reviewer_view_proposals(request):
         'num_proposals': num_proposals,
     }
 
-    return render(request, 'proposal_list.html', context=context)
+    # Return with the prefix of the directory where the file is
+    return render(request, 'reviewer/proposal_list.html', context=context)
 
 
 class ReviewerProposalListView(generic.ListView):
