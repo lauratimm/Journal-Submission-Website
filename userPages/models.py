@@ -33,11 +33,14 @@ class Proposal(models.Model):
     status = models.TextField(max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
     upload_date = models.DateTimeField(blank=True, null=True)
-    version = models.IntegerField(max_length=10)
+    version = models.IntegerField(blank=True, null=True)
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
+
+    def __str__(self):
+        return self.author_file
 
 
 class Comment(models.Model):
