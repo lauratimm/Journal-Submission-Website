@@ -6,7 +6,7 @@ from django.urls import reverse  # Used to generate URLs by reversing the URL pa
 
 
 class Paper(models.Model):
-    author = models.ForeignKey(User, related_name='%(class)s_author', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, related_name='%(class)s_author', on_delete= models.SET_NULL, null=True)
     version = models.IntegerField(max_length=10)
     upload_date = models.DateField(blank=True, null=True)
     file = models.FileField(null=True, blank=True)
@@ -42,9 +42,33 @@ class Proposal(models.Model):
     upload_date = models.DateTimeField(blank=True, null=True)
     version = models.IntegerField(max_length=10)
 
+    def __init__(self, author, reviewer_1, reviewer_2, reviewer_3, status, version):
+        self.author = author
+        self.reviewer_1 = reviewer_1
+        self.reviewer_2 = reviewer_2,
+        self.reviewer_3 = reviewer_3,
+        self.author_file = default,
+        self.reviewer_file = default,
+        self.due_date = datetime.datetime(2020,10,11)
+        self.upload_date = datetime.datetime.now()
+        self.version = version
+        self.status = status
+
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
+
+    def get_author(self):
+        """Set up for testing"""
+        return 'Author is: ' + str(self.author)
+
+    def get_reviewers(self):
+        """Set up for testing """
+        return 'Reviewers are : ' + self.reviewer_1 + ', ' + self.reviewer_2 + ', ' + self.reviewer_3
+
+    def get_dueDate(self):
+        """Set up for testing """
+        return 'Due date is ' + self.due_date
 
 
 class Comment(models.Model):
