@@ -11,7 +11,7 @@ urlpatterns = [
 
     path('proposal_list/', views.reviewer_view_proposals, name='Proposal View'),
     path('proposal/<int:pk>', views.ProposalDetailView.as_view(), name='proposal-detail'),
-    path('', views.create_profile, name = 'create'),
+    path('upload/', views.create_profile, name = 'create'),
 
 ]
 
