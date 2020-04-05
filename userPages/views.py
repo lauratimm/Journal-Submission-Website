@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 from django.views import generic
-from userPages.models import Paper, Journal, Proposal, Institution, Comment
+from userPages.models import Journal, Proposal, Institution, Comment
 from home.models import User
 
 
