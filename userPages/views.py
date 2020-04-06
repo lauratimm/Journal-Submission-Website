@@ -82,7 +82,6 @@ class ProposalDetailView(generic.DetailView):
 # uploaded to the data base. If it is not a pdf it shows an error message.
 FILE_TYPES = ['pdf']
 
-
 def create_profile(request):
     form = Profile_Form()
     if request.method == 'POST':
@@ -111,7 +110,7 @@ def some_view(request):
     # See the ReportLab documentation for the full list of functionality.
     p.drawString(100, 100, "Hello world.")
 
-    # Close the PDF object cleanly, and we're done.
+    # Close the PDF object
     p.showPage()
     p.save()
 
