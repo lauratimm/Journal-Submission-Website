@@ -73,13 +73,13 @@ class ReviewerProposalListView(generic.ListView):
 class ProposalDetailView(generic.DetailView):
     model = Proposal
 
+
 # Source: https://data-flair.training/blogs/django-file-upload/
 # Author: Laura Timm
 # Date Created: March 29, 2020
 # Date Updated:
 # This checks if the file uploaded is a pdf or not if it is it goes to the create html page and the file is
 # uploaded to the data base. If it is not a pdf it shows an error message.
-
 FILE_TYPES = ['pdf']
 
 
@@ -119,3 +119,20 @@ def some_view(request):
     # present the option to save the file.
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='user_pr.author_file.url')
+
+# Source: N/A
+# Author: Laura Timm
+# Date Created: April 5, 2020
+# Date Updated:
+# This view is for the journal submissions list on the Author Dashboard page
+
+def author_view_journals(request):
+    # Generate counts for proposals
+    num_proposals = Proposal.objects.all().count()
+
+    context = {
+        'num_proposals': num_proposals,
+    }
+
+    # Return with the prefix of the directory where the file is
+    return render(request, 'author/journal_list.html', context=context)
