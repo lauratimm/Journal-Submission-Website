@@ -38,8 +38,8 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.status }}</td>
                 <td>{{ item.upload_date }}</td>
-                <td>{{ item.reviewer_1_file }}</td>
-                <td>{{ item.reviewer_2_file }}</td>
+                <td><a href="{{ item.get_absolute_url }}">{{ item.reviewer_1_file }}</a></td>
+                <td><a href="{{ item.get_absolute_url }}">{{ item.reviewer_2_file }}</a></td>
                 <td>{{ item.reviewer_3_file }}</td>
             </tr>
 
