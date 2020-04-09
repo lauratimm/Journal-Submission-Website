@@ -5,7 +5,7 @@ from . import views
 from website import settings
 from django.conf.urls.static import static
 
-from .views import author_view_journals
+from .views import author_view_journals, author_profile
 
 urlpatterns = [
     url('authorDash/', views.author),
@@ -16,6 +16,7 @@ urlpatterns = [
     path('proposal/<int:pk>', views.ProposalDetailView.as_view(), name='proposal-detail'),
     path('upload/', views.create_profile, name = 'create'),
     path('journals/', author_view_journals, name = 'Journal View'),
+    path('about/', author_profile, name = 'Author Profile'),
 
 ]
 
