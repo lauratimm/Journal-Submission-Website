@@ -44,16 +44,9 @@ def editor(request):
 
 
 def reviewer_view_proposals(request):
-    # Generate counts for proposals
-    num_proposals = Proposal.objects.all().count()
-
-    # Filter by reviewer
-    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_1 = me).count()gi
-    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_2=me).count()
-    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_3=me).count()
-
+    list_of_proposals = Proposal.objects.all()
     context = {
-        'num_proposals': num_proposals,
+        'list_of_proposals': list_of_proposals,
     }
 
     # Return with the prefix of the directory where the file is
