@@ -56,7 +56,7 @@ def reviewer_view_proposals(request):
 class ReviewerProposalListView(generic.ListView):
     model = Proposal
     context_object_name = 'Proposals to Review'
-    template_name = 'proposals/proposal_list.html'
+    template_name = 'reviewer/proposal_list.html'
 
     # def get_queryset(self):
     #     # return Proposal.objects.filter(reviewer_1__icontains='id')
@@ -65,6 +65,7 @@ class ReviewerProposalListView(generic.ListView):
 
 class ProposalDetailView(generic.DetailView):
     model = Proposal
+    template_name = 'reviewer/proposal_detail.html'
 
 
 # Source: https://data-flair.training/blogs/django-file-upload/
@@ -74,6 +75,7 @@ class ProposalDetailView(generic.DetailView):
 # This checks if the file uploaded is a pdf or not if it is it goes to the create html page and the file is
 # uploaded to the data base. If it is not a pdf it shows an error message.
 FILE_TYPES = ['pdf']
+
 
 def create_profile(request):
     form = Profile_Form()
