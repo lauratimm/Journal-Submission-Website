@@ -7,8 +7,7 @@ from django.urls import reverse  # Used to generate URLs by reversing the URL pa
 
 class Journal(models.Model):
     name = models.TextField(max_length=100)
-    # Maybe foreign key
-    institution = models.TextField(max_length=100)
+    institution = models.ForeignKey('Institution', related_name='%(class)s_institution', on_delete=models.SET_NULL, null=True)
     editor = models.ForeignKey(User, related_name='%(class)s_username', on_delete=models.SET_NULL, null=True)
 
     def __self__(self):
@@ -33,7 +32,7 @@ class Proposal(models.Model):
     status = models.TextField(max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
     upload_date = models.DateTimeField(blank=True, null=True)
-    version = models.IntegerField(max_length=10)
+    version = models.IntegerField(max_length=10, blank=True, null=True)
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
