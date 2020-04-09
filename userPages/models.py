@@ -35,9 +35,9 @@ class Proposal(models.Model):
     reviewer_1_file = models.FileField(null=True, blank=True)
     reviewer_2_file = models.FileField(null=True, blank=True)
     reviewer_3_file = models.FileField(null=True, blank=True)
-    status = models.TextField(max_length=20)
+    status = models.TextField(default="pending", max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
-    upload_date = models.DateTimeField(default=timezone.now,  blank=True )
+    upload_date = models.DateTimeField(default=timezone.now())
     version = models.IntegerField(blank=True, null=True)
 
 

@@ -17,7 +17,6 @@ class Profile_Form(forms.ModelForm):
             'reviewer_2',
             'reviewer_3',
             'author_file',
-            'upload_date',
             ]
 
 class Journal_View_Form(forms.ModelForm):
