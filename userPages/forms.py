@@ -7,6 +7,7 @@ from userPages.models import Proposal
 # Date Created: March 29, 2020
 # Date Updated:
 # Form is used in the file upload page
+
 class Profile_Form(forms.ModelForm):
     class Meta:
         model = Proposal
@@ -18,6 +19,7 @@ class Profile_Form(forms.ModelForm):
             'reviewer_3',
             'author_file',
             ]
+
 
 class Journal_View_Form(forms.ModelForm):
     class Meta:
