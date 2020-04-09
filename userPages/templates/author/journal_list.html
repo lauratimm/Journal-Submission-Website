@@ -1,15 +1,14 @@
-{% extends 'reviewerDashboard.html' %}
+{% extends 'authorDashboard.html' %}
 
 {% block head %}
     <!DOCTYPE html>
     <html>
     <head>
-
+<div class = "Home Journals">
         <h2>Journal Submission List</h2> <br>
     </head>
     <body>
 
-    <hr class="my-4">
 
     <!-- Very Important csrf Token -->
     {% csrf_token %}
@@ -35,14 +34,14 @@
 
         {% for item in num_proposals %}
 
-            <h3><tr>
+            <tr>
                 <td>{{ item.title }}</td>
                 <td>{{ item.status }}</td>
                 <td>{{ item.upload_date }}</td>
                 <td>{{ item.reviewer_1_file }}</td>
                 <td>{{ item.reviewer_2_file }}</td>
                 <td>{{ item.reviewer_3_file }}</td>
-            </tr></h3>
+            </tr>
 
         {% endfor %}
 
