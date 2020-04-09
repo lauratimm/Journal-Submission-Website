@@ -44,16 +44,9 @@ def editor(request):
 
 
 def reviewer_view_proposals(request):
-    # Generate counts for proposals
-    num_proposals = Proposal.objects.all().count()
-
-    # Filter by reviewer
-    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_1 = me).count()gi
-    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_2=me).count()
-    # num_proposal_correct_reviewer = Proposal.objects.filter(reviewer_3=me).count()
-
+    list_of_proposals = Proposal.objects.all()
     context = {
-        'num_proposals': num_proposals,
+        'list_of_proposals': list_of_proposals,
     }
 
     # Return with the prefix of the directory where the file is
@@ -63,7 +56,7 @@ def reviewer_view_proposals(request):
 class ReviewerProposalListView(generic.ListView):
     model = Proposal
     context_object_name = 'Proposals to Review'
-    template_name = 'proposals/proposal_list.html'
+    template_name = 'reviewer/proposal_list.html'
 
     # def get_queryset(self):
     #     # return Proposal.objects.filter(reviewer_1__icontains='id')
@@ -72,6 +65,7 @@ class ReviewerProposalListView(generic.ListView):
 
 class ProposalDetailView(generic.DetailView):
     model = Proposal
+    template_name = 'reviewer/proposal_detail.html'
 
 
 # Source: https://data-flair.training/blogs/django-file-upload/
@@ -81,6 +75,7 @@ class ProposalDetailView(generic.DetailView):
 # This checks if the file uploaded is a pdf or not if it is it goes to the create html page and the file is
 # uploaded to the data base. If it is not a pdf it shows an error message.
 FILE_TYPES = ['pdf']
+
 
 def create_profile(request):
     form = Profile_Form()
@@ -124,6 +119,7 @@ def some_view(request):
 # Date Created: April 5, 2020
 # Date Updated:
 # This view is for the journal submissions list on the Author Dashboard page
+
 
 def author_view_journals(request):
     # Generate counts for proposals

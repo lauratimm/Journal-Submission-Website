@@ -1,12 +1,13 @@
+<<<<<<< HEAD
 {% extends 'reviewerDashboard.html' %}
 
 {% block head %}
     <h1>Proposal List</h1>
-     {% if proposal_list %}
+     {% if list_of_proposals %}
     <ul>
-        {% for proposal in proposal_list %}
+        {% for item in list_of_proposals %}
             <li>
-                <a href="{{ proposal.get_absolute_url }}">{{ proposal.author }}</a> ({{proposal.status}})
+                <a href="{{ item.get_absolute_url }}">{{ item.title }}</a> ({{item.status}})
             </li>
         {% endfor %}
     </ul>
@@ -14,3 +15,4 @@
         <p>There are no proposals in progress.</p>
     {% endif %}
 {% endblock %}
+
