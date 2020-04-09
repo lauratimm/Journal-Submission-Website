@@ -17,9 +17,9 @@ urlpatterns = [
     path('upload/', views.create_profile, name = 'create'),
     path('journals/', author_view_journals, name = 'Journal View'),
     path('about/', author_profile, name = 'Author Profile'),
-
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+

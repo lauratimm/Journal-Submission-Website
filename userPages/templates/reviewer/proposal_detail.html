@@ -1,9 +1,9 @@
-{% extends "reviewerListViewPage.html" %}
+{% extends 'reviewerDashboard.html' %}
 
 {% block content %}
-  <h1>Author: {{ proposal.author }}</h1>
+  <h1>Title: {{ item.title}}</h1>
 
-  <p><strong>Status:</strong> <a href="">{{ proposal.status }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Status:</strong> <a href="">{{ item.status }}</a></p> <!-- author detail link not yet defined -->
 <!--  <p><strong>Summary:</strong> {{ book.summary }}</p>-->
 <!--  <p><strong>ISBN:</strong> {{ book.isbn }}</p> -->
 <!--  <p><strong>Language:</strong> {{ book.language }}</p>  -->

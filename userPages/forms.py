@@ -29,5 +29,3 @@ class Journal_View_Form(forms.ModelForm):
             'upload_date',
             'version',
             ]
-
-
