@@ -120,16 +120,14 @@ def some_view(request):
 # Date Updated:
 # This view is for the journal submissions list on the Author Dashboard page
 
+
 def author_view_journals(request):
     # Generate counts for proposals
-    num_proposals = Proposal.objects.all().count()
-
-    context = {
-        'num_proposals': num_proposals,
-    }
+    num_proposals = Proposal.objects.all()
 
     # Return with the prefix of the directory where the file is
-    return render(request, 'author/journal_list.html', context=context)
+    return render(request, 'author/journal_list.html', {'num_proposals': num_proposals})
+
 
 # Source: N/A
 # Author: Laura Timm

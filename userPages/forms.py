@@ -19,7 +19,6 @@ class Profile_Form(forms.ModelForm):
             'author_file',
             ]
 
-
 class Journal_View_Form(forms.ModelForm):
     class Meta:
         model = Proposal
@@ -30,5 +29,3 @@ class Journal_View_Form(forms.ModelForm):
             'upload_date',
             'version',
             ]
-
-

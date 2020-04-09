@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse  # Used to generate URLs by reversing the URL patterns
-
-# Create your models here.
+from django.utils import timezone
 
 
 class Journal(models.Model):
@@ -28,15 +27,15 @@ class Proposal(models.Model):
     reviewer_1 = models.ForeignKey(User, related_name='%(class)s_username_r1', on_delete=models.SET_NULL, null=True)
     reviewer_2 = models.ForeignKey(User, related_name='%(class)s_username_r2', on_delete=models.SET_NULL, null=True)
     reviewer_3 = models.ForeignKey(User, related_name='%(class)s_username_r3', on_delete=models.SET_NULL, null=True)
-    title = models.CharField(max_length=200, null=True, blank= True)
-    abstract = models.TextField(max_length=1000, null=True)
+    title = models.CharField(max_length= 200, null=True, blank= True)
+    abstract = models.TextField(max_length=1000, null= True)
     author_file = models.FileField(null=True, blank=True)
     reviewer_1_file = models.FileField(null=True, blank=True)
     reviewer_2_file = models.FileField(null=True, blank=True)
     reviewer_3_file = models.FileField(null=True, blank=True)
-    status = models.TextField(max_length=20)
+    status = models.TextField(default="pending", max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
-    upload_date = models.DateTimeField(blank=True, null=True)
+    upload_date = models.DateTimeField(default=timezone.now())
     version = models.IntegerField(blank=True, null=True)
 
     def get_absolute_url(self):

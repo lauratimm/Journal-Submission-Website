@@ -1,26 +1,59 @@
 {% extends 'reviewerDashboard.html' %}
 
 {% block head %}
-        <!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
     <head>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <h1>Journal Submission List</h1> <br>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <h1>Journal Submission List</h1> <br>
     </head>
     <body>
-                <h3 class="display-4">Your Submissions</h3>
-                        {% block replace %}
 
-                <hr class="my-4">
-                <form method="GET" enctype="multipart/form-data">
-                    <!-- Very Important csrf Token -->
-                    {% csrf_token %}
-                    <table>
-                        {{ form.as_table }}
-                    </table>
-                </form>
-        {% endblock %}
+    <hr class="my-4">
+
+    <!-- Very Important csrf Token -->
+    {% csrf_token %}
+
+    <table border="5" WIDTH="80%" ALIGN="CENTER" CELLPADDING="4" CELLSPACING="4">
+
+        <tr>
+            <th colspan="6">
+                <h1>
+                    <center>Your Submissions</center>
+                </h1>
+            </th>
+        </tr>
+
+        <tr>
+
+            <th><h3><center>Title</center></h3></th>
+            <th><h3><center>Status</center></h3></th>
+            <th><h3><center>Upload Date</center></h3></th>
+            <th><h3><center>Reviewer 1 File</center></h3></th>
+            <th><h3><center>Reviewer 2 File</center></h3></th>
+            <th><h3><center>Reviewer 3 File</center></h3></th>
+
+        </tr>
+        {% for item in num_proposals %}
+
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.status }}</td>
+                <td>{{ item.upload_date }}</td>
+                <td>{{ item.reviewer_1_file }}</td>
+                <td>{{ item.reviewer_2_file }}</td>
+                <td>{{ item.reviewer_3_file }}</td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+    <br>
+
     </body>
-</html>
+    </html>
 {% endblock %}
