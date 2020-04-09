@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'accounts',
 
     #dataflair #file Upload in django
-    'profile_maker',
     'userPages'
 ]
 
