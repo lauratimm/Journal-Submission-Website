@@ -13,13 +13,17 @@
                         {% block replace %}
 
                 <hr class="my-4">
-                <form method="GET" enctype="multipart/form-data">
+
                     <!-- Very Important csrf Token -->
                     {% csrf_token %}
-                    <table>
-                        {{ form.as_table }}
-                    </table>
-                </form>
+                   <ul>
+                    {% for item in num_proposals %}
+                    <li>
+                        <h1>{{ item.title }}</h1>
+                     </li>
+                    {% endfor %}
+                <ul>
+
         {% endblock %}
     </body>
 </html>
