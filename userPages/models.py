@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse  # Used to generate URLs by reversing the URL patterns
 
 # Create your models here.
+from django.utils import timezone
 
 
 class Journal(models.Model):
@@ -31,10 +32,12 @@ class Proposal(models.Model):
     title = models.CharField(max_length= 200, null=True, blank= True)
     abstract = models.TextField(max_length=1000, null= True)
     author_file = models.FileField(null=True, blank=True)
-    reviewer_file = models.FileField(null=True, blank=True)
-    status = models.TextField(max_length=20)
+    reviewer_1_file = models.FileField(null=True, blank=True)
+    reviewer_2_file = models.FileField(null=True, blank=True)
+    reviewer_3_file = models.FileField(null=True, blank=True)
+    status = models.TextField(default="pending", max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
-    upload_date = models.DateTimeField(blank=True, null=True)
+    upload_date = models.DateTimeField(default=timezone.now())
     version = models.IntegerField(blank=True, null=True)
 
 
