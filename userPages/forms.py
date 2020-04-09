@@ -11,13 +11,23 @@ class Profile_Form(forms.ModelForm):
     class Meta:
         model = Proposal
         fields = [
-        'title',
-        'abstract',
-        'reviewer_1',
-        'reviewer_2',
-        'reviewer_3',
-        'author_file',
+            'title',
+            'abstract',
+            'reviewer_1',
+            'reviewer_2',
+            'reviewer_3',
+            'author_file',
             ]
 
+class Journal_View_Form(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields = [
+            'title',
+            'abstract',
+            'status',
+            'upload_date',
+            'version',
+            ]
 
 

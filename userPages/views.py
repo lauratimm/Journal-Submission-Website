@@ -135,3 +135,14 @@ def author_view_journals(request):
 
     # Return with the prefix of the directory where the file is
     return render(request, 'author/journal_list.html', context=context)
+
+# Source: N/A
+# Author: Laura Timm
+# Date Created: April 9, 2020
+# Date Updated:
+# This view is for the author profile on the Author Dashboard page
+def author_profile(request):
+    profile = {
+
+    }
+    return render(request, 'author/author_profile.html', context=profile)
