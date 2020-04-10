@@ -155,9 +155,10 @@ def author_view_journals(request):
 # Date Created: April 9, 2020
 # Date Updated:
 # This view is for the author profile on the Author Dashboard page
-def author_profile(request):
-    profile = {
 
+def author_profile(request):
+    list_of_journals = Proposal.objects.all()
+    profile = {'list_of journals': list_of_journals,
     }
     return render(request, 'author/author_profile.html', context=profile)
 
