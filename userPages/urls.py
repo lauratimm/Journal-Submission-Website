@@ -9,7 +9,7 @@ from .views import author_view_journals, author_profile
 
 urlpatterns = [
     url('authorDash/', views.author),
-    path('reviewerDash/', views.reviewer),
+    url('reviewerDash/', views.reviewer),
     url('editorDash/', views.editor),
 
     path('proposal_list/', views.reviewer_view_proposals, name='Proposal View'),
