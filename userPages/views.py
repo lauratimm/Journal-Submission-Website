@@ -166,3 +166,4 @@ class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
 
+

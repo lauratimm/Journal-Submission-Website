@@ -11,15 +11,15 @@
     {% if proposal.reviewer_1_file %}
 
     <object data="{{ proposal.reviewer_1_file.url }}" type="application/pdf" width="100%" height="100%">
-    <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.review_1.url }}">HERE!</a></p>
+    <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.reviewer_1_file.url }}">HERE!</a></p>
 
     {% elif proposal.reviewer_2_file %}
     <object data="{{ proposal.reviewer_2_file.url }}" type="application/pdf" width="100%" height="100%">
-    <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.review_2.url }}">HERE!</a></p>
+    <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.review_2_file.url }}">HERE!</a></p>
 
     {% elif proposal.reviewer_3_file %}
         <object data="{{ proposal.reviewer_3_file.url }}" type="application/pdf" width="100%" height="100%">
-        <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.review_3.url }}">HERE!</a></p>
+        <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.review_3_file.url }}">HERE!</a></p>
 
     {% else %}
         <p>There are no proposals in progress.</p>
