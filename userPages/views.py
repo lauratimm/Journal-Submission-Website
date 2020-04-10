@@ -160,3 +160,8 @@ def author_profile(request):
 
     }
     return render(request, 'author/author_profile.html', context=profile)
+
+class AuthorDetailView(generic.DetailView):
+    model = Proposal
+    template_name = 'author/author_detail.html'
+

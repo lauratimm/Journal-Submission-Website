@@ -16,7 +16,7 @@ urlpatterns = [
     path('proposal/<int:pk>', views.ProposalDetailView.as_view(), name='proposal-detail'),
     path('upload/', views.create_profile, name = 'create'),
     path('journals/', author_view_journals, name = 'Journal View'),
-    path('journals/<int:pk>', views.ProposalDetailView.as_view(), name='journal-detail'),
+    path('journals/<int:pk>', views.AuthorDetailView.as_view(), name='journal-detail'),
     path('about/', author_profile, name = 'Author Profile'),
 ]
 
