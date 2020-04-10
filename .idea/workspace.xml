@@ -158,10 +158,10 @@
       <screen x="0" y="0" width="1200" height="760" />
     </state>
     <state x="329" y="0" width="556" height="760" key="#SENG/0.0.1200.760@0.0.1200.760" timestamp="1586498871093" />
-    <state x="329" y="0" width="556" height="760" key="#Unnamed" timestamp="1586536206405">
+    <state x="329" y="0" width="556" height="760" key="#Unnamed" timestamp="1586537320331">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
-    <state x="329" y="0" width="556" height="760" key="#Unnamed/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1586536206405" />
+    <state x="329" y="0" width="556" height="760" key="#Unnamed/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1586537320331" />
     <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586499108873">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
@@ -204,5 +204,16 @@
       <screen x="3000" y="0" width="1920" height="1040" />
     </state>
     <state x="3655" y="342" key="com.intellij.ide.util.TipDialog/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585784509661" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/userPages/views.py</url>
+          <line>163</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
