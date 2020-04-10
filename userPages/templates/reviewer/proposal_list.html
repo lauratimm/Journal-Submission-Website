@@ -1,0 +1,17 @@
+{% extends 'reviewerDashboard.html' %}
+
+{% block head %}
+    <h1>Proposal List</h1>
+     {% if list_of_proposals %}
+    <ul>
+        {% for item in list_of_proposals %}
+            <li>
+                <a href="{{ item.get_absolute_url }}">{{ item.title }}</a> ({{item.status}})
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>There are no proposals in progress.</p>
+    {% endif %}
+{% endblock %}
+
