@@ -14,8 +14,11 @@ def author(request):
     function4 = "Logout"
     dashVariable = "/upload"
 
+    num_proposal = Proposal.objects.only('')
+
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'num_proposal': num_proposal}
+
     return render(request, 'authorDashboard.html', args)
 
 

@@ -3,12 +3,8 @@
 {% block head %}
     <!DOCTYPE html>
     <html>
-    <head>
 <div class = "Home Journals">
-        <h2>Journal Submission List</h2> <br>
-
-    <body>
-
+        <h2>Journal Submission List</h2>
 
     <!-- Very Important csrf Token -->
     {% csrf_token %}
@@ -17,7 +13,8 @@
 
         <tr>
             <th colspan="6">
-                <h2>Your Submissions</h2>
+                <h2>Your Submissions</h2><br>
+                <center> Click the Title of the Submission to see Original pdf and Reviewer files. </center>
             </th>
         </tr>
 
@@ -26,21 +23,17 @@
             <th><h2>Title</h2></th>
             <th><h2>Status</h2></th>
             <th><h2>Upload Date</h2></th>
-            <th><h2>Reviewer 1 File</h2></th>
-            <th><h2>Reviewer 2 File</h2></th>
-            <th><h2>Reviewer 3 File</h2></th>
 
         </tr>
 
         {% for item in num_proposals %}
 
             <tr>
-                <td>{{ item.title }}</td>
+                <td><a href="{{ item.get_author_url }}">{{ item.title }}</a></td>
                 <td>{{ item.status }}</td>
                 <td>{{ item.upload_date }}</td>
-                <td><a href="{{ item.get_author_url }}">{{ item.reviewer_1_file }}</a></td>
-                <td><a href="{{ item.get_author_url  }}">{{ item.reviewer_2_file }}</a></td>
-                <td><a href="{{ item.get_author_url  }}">{{ item.reviewer_3_file }}</a></td>
+
+
             </tr>
 
         {% endfor %}
@@ -49,6 +42,5 @@
     <br>
     <br>
 </div>
-    </body>
     </html>
 {% endblock %}
