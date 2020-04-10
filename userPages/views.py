@@ -14,8 +14,11 @@ def author(request):
     function4 = "Logout"
     dashVariable = "/upload"
 
+    num_proposal = Proposal.objects.only('')
+
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'num_proposal': num_proposal}
+
     return render(request, 'authorDashboard.html', args)
 
 
@@ -155,8 +158,15 @@ def author_view_journals(request):
 # Date Created: April 9, 2020
 # Date Updated:
 # This view is for the author profile on the Author Dashboard page
-def author_profile(request):
-    profile = {
 
+def author_profile(request):
+    list_of_journals = Proposal.objects.all()
+    profile = {'list_of journals': list_of_journals,
     }
     return render(request, 'author/author_profile.html', context=profile)
+
+class AuthorDetailView(generic.DetailView):
+    model = Proposal
+    template_name = 'author/author_detail.html'
+
+
