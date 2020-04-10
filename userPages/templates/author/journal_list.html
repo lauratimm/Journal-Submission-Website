@@ -13,7 +13,7 @@
     <!-- Very Important csrf Token -->
     {% csrf_token %}
 
-    <table class="minimalistBlack" border="5" WIDTH="80%" ALIGN="CENTER" CELLPADDING="3" CELLSPACING="4">
+    <table border="5" WIDTH="80%" ALIGN="CENTER" CELLPADDING="3" CELLSPACING="4">
 
         <tr>
             <th colspan="6">
@@ -38,9 +38,9 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.status }}</td>
                 <td>{{ item.upload_date }}</td>
-                <td><a href="{{ item.get_absolute_url }}">{{ item.reviewer_1_file }}</a></td>
-                <td><a href="{{ item.get_absolute_url }}">{{ item.reviewer_2_file }}</a></td>
-                <td><a href="{{ item.get_absolute_url }}">{{ item.reviewer_3_file }}</a></td>
+                <td><a href="{{ item.get_author_url }}">{{ item.reviewer_1_file }}</a></td>
+                <td><a href="{{ item.get_author_url  }}">{{ item.reviewer_2_file }}</a></td>
+                <td><a href="{{ item.get_author_url  }}">{{ item.reviewer_3_file }}</a></td>
             </tr>
 
         {% endfor %}
