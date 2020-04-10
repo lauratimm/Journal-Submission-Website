@@ -30,7 +30,8 @@ urlpatterns = [
     path('journals/', author_view_journals, name = 'Journal View'),
     path('about/', author_profile, name = 'Author Profile'),
     path('viewSubmissions/', views.reviewer_view_submissions, name='Submission View'),
-    path('upload/', include('profile_maker.urls'))
+    path('upload/', include('profile_maker.urls')),
+    path("r'^logout/", views.logout_view)
 
 ]
 
