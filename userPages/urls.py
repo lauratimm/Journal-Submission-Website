@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 from website import settings
@@ -9,7 +9,7 @@ from .views import author_view_journals, author_profile
 
 urlpatterns = [
     url('authorDash/', views.author),
-    url('reviewerDash/', views.reviewer),
+    path('reviewerDash/', views.reviewer),
     url('editorDash/', views.editor),
 
     path('proposal_list/', views.reviewer_view_proposals, name='Proposal View'),
