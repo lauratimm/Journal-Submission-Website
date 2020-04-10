@@ -1,8 +1,7 @@
 from django.db import models
-from home.models import User
-# from website.accounts.models import Something
-# Create your models here.
+from django.contrib.auth.models import User
 from django.urls import reverse  # Used to generate URLs by reversing the URL patterns
+from django.utils import timezone
 
 
 class Paper(models.Model):
@@ -11,12 +10,11 @@ class Paper(models.Model):
     upload_date = models.DateField(blank=True, null=True)
     file = models.FileField(null=True, blank=True)
 
-
 class Journal(models.Model):
     name = models.TextField(max_length=100)
     # Maybe foreign key
     institution = models.TextField(max_length=100)
-    editor = models.ForeignKey(User, related_name='%(class)s_editor', on_delete=models.SET_NULL, null=True)
+    editor = models.ForeignKey(User, related_name='%(class)s_username', on_delete=models.SET_NULL, null=True)
 
     def __self__(self):
         return self.name
@@ -31,16 +29,20 @@ class Institution(models.Model):
 
 
 class Proposal(models.Model):
-    author = models.ForeignKey(User, related_name='%(class)s_author', on_delete=models.SET_NULL, null=True)
-    reviewer_1 = models.ForeignKey(User, related_name='%(class)s_reviewer_1', on_delete=models.SET_NULL, null=True)
-    reviewer_2 = models.ForeignKey(User, related_name='%(class)s_reviewer_2', on_delete=models.SET_NULL, null=True)
-    reviewer_3 = models.ForeignKey(User, related_name='%(class)s_reviewer_3', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, related_name='%(class)s_username_a', on_delete=models.SET_NULL, null=True)
+    reviewer_1 = models.ForeignKey(User, related_name='%(class)s_username_r1', on_delete=models.SET_NULL, null=True)
+    reviewer_2 = models.ForeignKey(User, related_name='%(class)s_username_r2', on_delete=models.SET_NULL, null=True)
+    reviewer_3 = models.ForeignKey(User, related_name='%(class)s_username_r3', on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length= 200, null=True, blank= True)
+    abstract = models.TextField(max_length=1000, null= True)
     author_file = models.FileField(null=True, blank=True)
-    reviewer_file = models.FileField(null=True, blank=True)
-    status = models.TextField(max_length=20)
+    reviewer_1_file = models.FileField(null=True, blank=True)
+    reviewer_2_file = models.FileField(null=True, blank=True)
+    reviewer_3_file = models.FileField(null=True, blank=True)
+    status = models.TextField(default="pending", max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
-    upload_date = models.DateTimeField(blank=True, null=True)
-    version = models.IntegerField(max_length=10)
+    upload_date = models.DateTimeField(default=timezone.now())
+    version = models.IntegerField(blank=True, null=True)
 
     def __init__(self, author, reviewer_1, reviewer_2, reviewer_3, status, version):
         self.author = author
@@ -58,6 +60,7 @@ class Proposal(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
 
+
     def get_author(self):
         """Set up for testing"""
         return 'Author is: ' + str(self.author)
@@ -69,10 +72,12 @@ class Proposal(models.Model):
     def get_dueDate(self):
         """Set up for testing """
         return 'Due date is ' + self.due_date
+    def __str__(self):
+        return self.author_file
 
 
 class Comment(models.Model):
     proposal = models.ForeignKey('Proposal', related_name='%(class)s_proposal_id', on_delete=models.SET_NULL, null=True)
-    reviewer = models.ForeignKey(User, related_name='%(class)s_reviewer', on_delete=models.SET_NULL, null=True)
+    reviewer = models.ForeignKey(User, related_name='%(class)s_username', on_delete=models.SET_NULL, null=True)
     paper_version = models.IntegerField(max_length=10)
     comment_text = models.TextField(max_length=500, blank=True, null=True)
