@@ -55,6 +55,31 @@
       <recent name="C:\Users\alexa\website\accounts\templates" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -79,11 +104,11 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585863545279">
+    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586498551851">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
     <state x="3413" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585785386885" />
-    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1200.760@0.0.1200.760" timestamp="1585863545279" />
+    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1200.760@0.0.1200.760" timestamp="1586498551851" />
     <state x="3738" y="261" key="FileChooserDialogImpl" timestamp="1585784528386">
       <screen x="3000" y="0" width="1920" height="1040" />
     </state>
@@ -126,7 +151,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/userPages/views.py</url>
-          <line>19</line>
+          <line>18</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

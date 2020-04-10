@@ -13,7 +13,6 @@ the differing options for the users.
 Author: Alexandra Tenney and Anna Chaykovska
 
 Date Created: April 1, 2020
->>>>>>> added comments to base.html, authorDashboard, editorDashboard, reviewerDashbaord, userPages/urls.py and userPages/view.py
 
 Date Updated: April 2, 2020
 '''
@@ -25,7 +24,6 @@ def author(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
-
     dashVariable = "upload/"
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
@@ -39,6 +37,7 @@ def reviewer(request):
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewSubmissions"
+
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
 
