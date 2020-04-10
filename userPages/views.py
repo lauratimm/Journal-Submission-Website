@@ -1,33 +1,23 @@
-
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from userPages.forms import Profile_Form
 import io
 from reportlab.pdfgen import canvas
+from django.contrib.auth import logout
 
-''' This page makes all of the dashboards render their respective html templates, with arguments passed in for
-the differing options for the users.
-
-Author: Alexandra Tenney and Anna Chaykovska
-
-Date Created: April 1, 2020
-
-Date Updated: April 2, 2020
-'''
-
-from django.shortcuts import render
 
 def author(request):
     function1 = "Submissions"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
-    dashVariable = "upload/"
+    dashVariable = "/upload"
+    dashVariable2 = '/logout'
 
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
-
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2 }
     return render(request, 'authorDashboard.html', args)
 
 
@@ -36,11 +26,11 @@ def reviewer(request):
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
-    dashVariable = "/viewSubmissions"
+    dashVariable = "/proposal_list"
+    dashVariable2 = '/logout'
 
-
-    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3, 'dashVariable': dashVariable}
-
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     return render(request, 'reviewerDashboard.html', args)
 
 
@@ -50,9 +40,10 @@ def editor(request):
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
+    dashVariable2 = '/logout'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     return render(request, 'editorDashboard.html', args)
 
 
@@ -174,3 +165,7 @@ def author_profile(request):
     }
     return render(request, 'author/author_profile.html', context=profile)
 
+def logout_view(request):
+    if request.method == 'GET':
+        logout(request)
+        return redirect('/home/')

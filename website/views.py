@@ -26,7 +26,7 @@ def loginRequest(request):
         if user is not None:
 
             login(request, user)
-            return redirect('/home/')
+            return redirect('authorDash/')
 
         else:
             form = AuthenticationForm(request.POST)
@@ -34,3 +34,4 @@ def loginRequest(request):
     else:
         form = AuthenticationForm(request.POST)
         return render(request, 'loginPage.html', {'form': form})
+
