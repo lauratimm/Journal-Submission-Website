@@ -5,6 +5,9 @@ from django.shortcuts import render
 from userPages.forms import Profile_Form, Author_Resubmit_Form
 import io
 from reportlab.pdfgen import canvas
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
 
 
 def author(request):
