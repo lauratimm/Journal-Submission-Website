@@ -2,7 +2,7 @@ from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
 from django.shortcuts import render
-from userPages.forms import Profile_Form
+from userPages.forms import Profile_Form, Author_Resubmit_Form
 import io
 from reportlab.pdfgen import canvas
 
@@ -138,6 +138,7 @@ def some_view(request):
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='user_pr.author_file.url')
 
+
 # Source: N/A
 # Author: Laura Timm
 # Date Created: April 5, 2020
@@ -162,11 +163,26 @@ def author_view_journals(request):
 def author_profile(request):
     list_of_journals = Proposal.objects.all()
     profile = {'list_of journals': list_of_journals,
-    }
+               }
     return render(request, 'author/author_profile.html', context=profile)
+
 
 class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
 
-
+    def author_resubmit(request):
+        form = Author_Resubmit_Form()
+        if request.method == 'POST':
+            form = Author_Resubmit_Form(request.POST, request.FILES)
+            if form.is_valid():
+                user_pr = form.save(commit=False)
+                user_pr.author_file = request.FILES['author_file']
+                file_type = user_pr.author_file.url.split('.')[-1]
+                file_type = file_type.lower()
+                if file_type not in FILE_TYPES:
+                    return render(request, 'profile_maker/error.html')
+                user_pr.save()
+                return render(request, 'profile_maker/details.html', {'user_pr': user_pr})
+        context = {"form": form, }
+        return render(request, 'author/author_detail.html', context)

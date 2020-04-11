@@ -35,8 +35,10 @@ class Proposal(models.Model):
     reviewer_3_file = models.FileField(null=True, blank=True)
     status = models.TextField(default="pending", max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)
-    upload_date = models.DateTimeField(default=timezone.now())
+    upload_date = models.DateTimeField(default=timezone.now)
     version = models.IntegerField(default=1, blank=True, null=True)
+    author_resubmit = models.FileField(null=True, blank=True)
+
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
@@ -55,3 +57,4 @@ class Comment(models.Model):
     reviewer = models.ForeignKey(User, related_name='%(class)s_username', on_delete=models.SET_NULL, null=True)
     paper_version = models.IntegerField(max_length=10)
     comment_text = models.TextField(max_length=500, blank=True, null=True)
+

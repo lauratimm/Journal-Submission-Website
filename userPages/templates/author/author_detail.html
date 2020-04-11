@@ -9,13 +9,13 @@
     <p><strong>Upload Date:</strong> {{ proposal.upload_date }}</p>
 
     <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%">
-    <p><strong>Original Author PDF File:</strong> <a href="{{ proposal.author_file.url }}">Author Submission</a></p>
+        <p><strong>Original Author PDF File:</strong> <a href="{{ proposal.author_file.url }}">Author Submission</a></p></object>
 
     {% if proposal.reviewer_1_file %}
 
         <object data="{{ proposal.reviewer_1_file.url }}" type="application/pdf" width="100%" height="100%">
         <p><strong>Reviewer Uploaded PDF File:</strong> <a
-                href="{{ proposal.reviewer_1_file.url }}">{{ proposal.reviewer_1 }} Review</a></p>
+                href="{{ proposal.reviewer_1_file.url }}">{{ proposal.reviewer_1 }} Review</a></p></object>
 
         {% if proposal.reviewer_2_file %}
             <object data="{{ proposal.reviewer_2_file.url }}" type="application/pdf" width="100%" height="100%">
@@ -25,8 +25,8 @@
 
         {% if proposal.reviewer_3_file %}
             <object data="{{ proposal.reviewer_3_file.url }}" type="application/pdf" width="100%" height="100%">
-            <p><strong>Reviewer Uploaded PDF File:</strong> <a
-                    href="{{ proposal.review_3_file.url }}">{{ proposal.reviewer_3 }} Review</a></p>
+        <p><strong>Reviewer Uploaded PDF File:</strong> <a
+                href="{{ proposal.reviewer_3_file.url }}">{{ proposal.reviewer_3 }} Review</a></p></object>
         {% endif %}
 
 
@@ -37,16 +37,17 @@
 
         {% if proposal.reviewer_3_file %}
             <object data="{{ proposal.reviewer_3_file.url }}" type="application/pdf" width="100%" height="100%">
-            <p><strong>Reviewer Uploaded PDF File:</strong> <a
-                    href="{{ proposal.review_3_file.url }}">{{ proposal.reviewer_3 }} Review</a></p>
-            {% endif%}
+        <p><strong>Reviewer Uploaded PDF File:</strong> <a
+                href="{{ proposal.reviewer_3_file.url }}">{{ proposal.reviewer_3 }} Review</a></p></object>
+        {% endif %}
 
     {% elif proposal.reviewer_3_file %}
         <object data="{{ proposal.reviewer_3_file.url }}" type="application/pdf" width="100%" height="100%">
-        <p><strong>Reviewer Uploaded PDF File:</strong> <a href="{{ proposal.review_3_file.url }}">HERE!</a></p>
+        <p><strong>Reviewer Uploaded PDF File:</strong> <a
+                href="{{ proposal.reviewer_3_file.url }}">{{ proposal.reviewer_3 }} Review</a></p></object>
 
     {% else %}
-        <p>There are no proposals in progress.</p>
+        <p>There are no Reviewed PDF's available yet</p>
     {% endif %}
 
 
