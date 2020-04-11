@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.template import RequestContext
+from django.contrib.auth.models import User, Group
 
 
 # when view.home is called will send to HomePage.html
@@ -24,12 +25,18 @@ def loginRequest(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)
-            return redirect('/home/')
 
+            login(request, user)
+            if user.groups.filter(name='Author').exists():
+                return redirect('authorDash/')
+            elif user.groups.filter(name='Reviewer').exists():
+                return redirect('reviewerDash/')
+            elif user.groups.filter(name='Editor').exists():
+                return redirect('editorDash/')
         else:
             form = AuthenticationForm(request.POST)
             return render(request, 'loginPage.html', {'form': form})
     else:
         form = AuthenticationForm(request.POST)
         return render(request, 'loginPage.html', {'form': form})
+

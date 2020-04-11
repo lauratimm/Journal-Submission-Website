@@ -1,51 +1,65 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from userPages.forms import Profile_Form
 import io
 from reportlab.pdfgen import canvas
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+@login_required(login_url='/login')
 def author(request):
     function1 = "Submissions"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/upload"
+    dashVariable2 = '/logout'
 
     num_proposal = Proposal.objects.only('')
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'num_proposal': num_proposal}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal}
+
 
     return render(request, 'authorDashboard.html', args)
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+@login_required(login_url='/login')
 def reviewer(request):
     function1 = "Submitted Papers"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/proposal_list"
+    dashVariable2 = '/logout'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     return render(request, 'reviewerDashboard.html', args)
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Editor').exists())
+@login_required(login_url='/login')
 def editor(request):
     function1 = "Paper Reviews"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
+    dashVariable2 = '/logout'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     return render(request, 'editorDashboard.html', args)
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+@login_required(login_url='/login')
 def reviewer_view_proposals(request):
     list_of_proposals = Proposal.objects.all()
     context = {
@@ -56,6 +70,8 @@ def reviewer_view_proposals(request):
     return render(request, 'reviewer/proposal_list.html', context=context)
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+@login_required(login_url='/login')
 class ReviewerProposalListView(generic.ListView):
     model = Proposal
     context_object_name = 'Proposals to Review'
@@ -66,11 +82,15 @@ class ReviewerProposalListView(generic.ListView):
     #     return Proposal.objects
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# @login_required
 class ProposalDetailView(generic.DetailView):
     model = Proposal
     template_name = 'reviewer/proposal_detail.html'
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+@login_required(login_url='/login')
 def reviewer_pdf_view(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
@@ -138,13 +158,15 @@ def some_view(request):
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='user_pr.author_file.url')
 
+
 # Source: N/A
 # Author: Laura Timm
 # Date Created: April 5, 2020
 # Date Updated:
 # This view is for the journal submissions list on the Author Dashboard page
 
-
+# @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+@login_required(login_url='/login')
 def author_view_journals(request):
     # Generate counts for proposals
     num_proposals = Proposal.objects.all()
@@ -159,14 +181,29 @@ def author_view_journals(request):
 # Date Updated:
 # This view is for the author profile on the Author Dashboard page
 
+# @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+# @login_required
+def author_profile(request):
+    profile = {
+    }
+
 def author_profile(request):
     list_of_journals = Proposal.objects.all()
     profile = {'list_of journals': list_of_journals,
     }
     return render(request, 'author/author_profile.html', context=profile)
 
+
+
+# @login_required
+def logout_view(request):
+    if request.method == 'GET':
+        logout(request)
+        return redirect('/home/')
+
 class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
+
 
 

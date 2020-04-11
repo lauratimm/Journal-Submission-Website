@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff0e2230-b778-4192-a9a2-a0ff0ef6f845" name="Default Changelist" comment="" />
+    <list default="true" id="2026ca8d-610b-47ec-94e8-c119c4d95489" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +46,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -55,20 +55,19 @@
       <recent name="C:\Users\alexa\website\accounts\templates" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="seng2020" type="Python.DjangoServer" factoryName="Django server">
-      <module name="website" />
+  <component name="RunManager" selected="Django server.Unnamed">
+    <configuration name="SENG" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="website.settings" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\alexa\AppData\Local\Programs\Python\Python38-32\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
       <option name="host" value="" />
@@ -80,6 +79,56 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unnamed" type="Python.DjangoServer" factoryName="Django server" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\alexa\AppData\Local\Programs\Python\Python38-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8000/" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.SENG" />
+      <item itemvalue="Django server.Unnamed" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -105,57 +154,55 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585863545279">
+    <state x="329" y="0" width="556" height="760" key="#SENG" timestamp="1586498871093">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="329" y="0" width="556" height="760" key="#SENG/0.0.1200.760@0.0.1200.760" timestamp="1586498871093" />
+    <state x="329" y="0" width="556" height="760" key="#Unnamed" timestamp="1586537320331">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="329" y="0" width="556" height="760" key="#Unnamed/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1586537320331" />
+    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586499108873">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
     <state x="3413" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585785386885" />
-    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1200.760@0.0.1200.760" timestamp="1585863545279" />
+    <state x="111" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1200.760@0.0.1200.760" timestamp="1586499108873" />
     <state x="3738" y="261" key="FileChooserDialogImpl" timestamp="1585784528386">
       <screen x="3000" y="0" width="1920" height="1040" />
     </state>
     <state x="3738" y="261" key="FileChooserDialogImpl/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585784528386" />
-    <state width="1167" height="77" key="GridCell.Tab.0.bottom" timestamp="1585990018906">
+    <state width="1155" height="257" key="GridCell.Tab.0.bottom" timestamp="1586499112371">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
     <state width="1155" height="26" key="GridCell.Tab.0.bottom/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1585895334357" />
     <state width="1876" height="77" key="GridCell.Tab.0.bottom/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585895947750" />
-    <state width="1167" height="77" key="GridCell.Tab.0.bottom/0.0.1200.760@0.0.1200.760" timestamp="1585990018906" />
-    <state width="1167" height="77" key="GridCell.Tab.0.center" timestamp="1585990018906">
+    <state width="1155" height="257" key="GridCell.Tab.0.bottom/0.0.1200.760@0.0.1200.760" timestamp="1586499112371" />
+    <state width="1155" height="257" key="GridCell.Tab.0.center" timestamp="1586499112370">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
     <state width="1155" height="26" key="GridCell.Tab.0.center/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1585895334357" />
     <state width="1876" height="77" key="GridCell.Tab.0.center/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585895947750" />
-    <state width="1167" height="77" key="GridCell.Tab.0.center/0.0.1200.760@0.0.1200.760" timestamp="1585990018906" />
-    <state width="1167" height="77" key="GridCell.Tab.0.left" timestamp="1585990018905">
+    <state width="1155" height="257" key="GridCell.Tab.0.center/0.0.1200.760@0.0.1200.760" timestamp="1586499112370" />
+    <state width="1155" height="257" key="GridCell.Tab.0.left" timestamp="1586499112369">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
     <state width="1155" height="26" key="GridCell.Tab.0.left/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1585895334357" />
     <state width="1876" height="77" key="GridCell.Tab.0.left/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585895947749" />
-    <state width="1167" height="77" key="GridCell.Tab.0.left/0.0.1200.760@0.0.1200.760" timestamp="1585990018905" />
-    <state width="1167" height="77" key="GridCell.Tab.0.right" timestamp="1585990018906">
+    <state width="1155" height="257" key="GridCell.Tab.0.left/0.0.1200.760@0.0.1200.760" timestamp="1586499112369" />
+    <state width="1155" height="257" key="GridCell.Tab.0.right" timestamp="1586499112371">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
     <state width="1155" height="26" key="GridCell.Tab.0.right/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1585895334357" />
     <state width="1876" height="77" key="GridCell.Tab.0.right/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585895947750" />
-    <state width="1167" height="77" key="GridCell.Tab.0.right/0.0.1200.760@0.0.1200.760" timestamp="1585990018906" />
-    <state x="110" y="23" key="SettingsEditor" timestamp="1585803405670">
+    <state width="1155" height="257" key="GridCell.Tab.0.right/0.0.1200.760@0.0.1200.760" timestamp="1586499112371" />
+    <state x="110" y="23" key="SettingsEditor" timestamp="1586536205651">
       <screen x="0" y="0" width="1200" height="760" />
     </state>
-    <state x="110" y="23" key="SettingsEditor/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1585803405670" />
+    <state x="110" y="23" key="SettingsEditor/0.0.1200.760/3000.0.1920.1040@0.0.1200.760" timestamp="1586536205651" />
+    <state x="110" y="23" key="SettingsEditor/0.0.1200.760@0.0.1200.760" timestamp="1586498901241" />
     <state x="3655" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1585784509661">
       <screen x="3000" y="0" width="1920" height="1040" />
     </state>
     <state x="3655" y="342" key="com.intellij.ide.util.TipDialog/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585784509661" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/userPages/views.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
