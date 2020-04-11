@@ -8,10 +8,18 @@ from reportlab.pdfgen import canvas
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
-
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney, Anna Chaykovska
+# Date Created: April 4, 2020
+# Date Updated: April 9, 2020
+# This displays the dahboard view for author, including all of their customized urls to specific views
+#
 # @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def author(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages,
     function1 = "Submissions"
     function2 = "Journals"
     function3 = "Profile"
@@ -27,10 +35,18 @@ def author(request):
 
     return render(request, 'authorDashboard.html', args)
 
-
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney, Anna Chaykovska
+# Date Created: April 4, 2020
+# Date Updated: April 9, 2020
+# This displays the dashboard view for reviewer, including all of their customized urls to specific views
+#
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def reviewer(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages,
     function1 = "Submitted Papers"
     function2 = "Journals"
     function3 = "Profile"
@@ -42,10 +58,18 @@ def reviewer(request):
             'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     return render(request, 'reviewerDashboard.html', args)
 
-
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney, Anna Chaykovska
+# Date Created: April 4, 2020
+# Date Updated: April 9, 2020
+# This displays the dahboard view for editor, including all of their customized urls to specific views
+#
 # @user_passes_test(lambda u: u.groups.filter(name='Editor').exists())
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def editor(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages,
     function1 = "Paper Reviews"
     function2 = "Journals"
     function3 = "Profile"
@@ -59,6 +83,7 @@ def editor(request):
 
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def reviewer_view_proposals(request):
     list_of_proposals = Proposal.objects.all()
@@ -71,6 +96,7 @@ def reviewer_view_proposals(request):
 
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 class ReviewerProposalListView(generic.ListView):
     model = Proposal
@@ -90,6 +116,7 @@ class ProposalDetailView(generic.DetailView):
 
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def reviewer_pdf_view(request):
     # Create a file-like buffer to receive PDF data.
@@ -166,6 +193,7 @@ def some_view(request):
 # This view is for the journal submissions list on the Author Dashboard page
 
 # @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def author_view_journals(request):
     # Generate counts for proposals
@@ -193,10 +221,17 @@ def author_profile(request):
     }
     return render(request, 'author/author_profile.html', context=profile)
 
-
-
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney
+# Date Created: April 9, 2020
+# Date Updated: April 10, 2020
+# This logs users out from their accounts and redirects to the home page
+#
+# required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
+# sends the user back to home upon pressing the logout button
 def logout_view(request):
+    #since logging out includes loading a page, the request will be a get
     if request.method == 'GET':
         logout(request)
         return redirect('/home/')

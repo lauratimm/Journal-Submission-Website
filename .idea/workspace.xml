@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2026ca8d-610b-47ec-94e8-c119c4d95489" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userPages/templates/logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/userPages/templates/logout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userPages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/userPages/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
@@ -47,8 +48,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
   </component>
@@ -147,7 +150,7 @@
       <updated>1585784505909</updated>
       <workItem from="1585784509538" duration="24000" />
       <workItem from="1585784534300" duration="23210000" />
-      <workItem from="1586588428347" duration="404000" />
+      <workItem from="1586588428347" duration="1384000" />
     </task>
     <servers />
   </component>
@@ -211,5 +214,16 @@
     </state>
     <state x="3655" y="342" key="com.intellij.ide.util.TipDialog/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585784509661" />
     <state x="409" y="250" key="com.intellij.ide.util.TipDialog/0.0.1200.760@0.0.1200.760" timestamp="1586588433926" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/website/views.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

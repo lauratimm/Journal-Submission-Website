@@ -7,18 +7,27 @@ from django.contrib.auth.models import User, Group
 
 # when view.home is called will send to HomePage.html
 def home(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages, including the dashboards
     function1 = "Contact Us"
     function2 = "Journals"
     function3 = "About Us"
     function4 = "Login"
+
+    #variables for the path of one of the buttons
     dashVariable = "/contact"
 
+    #the dictionary that contains all the labels and pairs them as the value of their function within the
+    #tempalte
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
             'dashVariable': dashVariable}
+    #render that page with all of the customized arguments
     return render(request, 'HomePage.html', args)
 
 # when view.login is called will send to loginPage.html
 def loginRequest(request):
+    # the method will be a post if the log in button was pushed, thus data must be grabbed from the form
+
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -38,9 +47,14 @@ def loginRequest(request):
             else:
                 return redirect('authorDash/')
 
+        # the user did not exist in the database, thus redirect them to the same sign in page
         else:
             form = AuthenticationForm(request.POST)
             return render(request, 'loginPage.html', {'form': form})
+
+    # the method was not a post, thus the user is navigating or reloaded the page, thus no data
+    # should be grabbed and the page should just be loaded
+
     else:
         form = AuthenticationForm(request.POST)
         return render(request, 'loginPage.html', {'form': form})
