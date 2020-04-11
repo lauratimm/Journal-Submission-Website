@@ -22,17 +22,22 @@ def loginRequest(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
+        #stores the users in the variable user, including all their groups attributes
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-
+            #if it could find a user that made a match, log them in (essentially store them
             login(request, user)
-            if user.groups.filter(name='Author').exists():
-                return redirect('authorDash/')
-            elif user.groups.filter(name='Reviewer').exists():
+            #if the user belongs to the group Reviewer, send them to the reviewer dashboard
+            if user.groups.filter(name='Reviewer').exists():
                 return redirect('reviewerDash/')
+            # if the user belongs to the group Editor, send them to the editor dashboard
             elif user.groups.filter(name='Editor').exists():
                 return redirect('editorDash/')
+            # since author is the default, in all other cases send them to the author dashboard
+            else:
+                return redirect('authorDash/')
+
         else:
             form = AuthenticationForm(request.POST)
             return render(request, 'loginPage.html', {'form': form})
