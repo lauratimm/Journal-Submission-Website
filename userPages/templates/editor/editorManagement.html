@@ -1,0 +1,55 @@
+<!--
+# Source: Editor Management Page
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# This is the view for the Editor Management Page, from here the Editor can see and select papers
+-->
+{% extends 'editorDashboard.html' %}
+
+{% block head %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+<div class = "Editor Management">
+        <h2>Submitted Papers</h2> <br>
+    </head>
+    <body>
+
+
+    <!-- ALL POWER TO THE CSRF TOKEN -->
+    {% csrf_token %}
+
+    <table class="minimalistBlack" border="5" WIDTH="80%" ALIGN="CENTER" CELLPADDING="4" CELLSPACING="4">
+
+        <tr>
+            <th colspan="6">
+                <h2>List of Submitted Papers</h2>
+            </th>
+        </tr>
+
+      <tr>
+
+            <th><h2><center>Title</center></h2></th>
+            <th><h2><center>Status</center></h2></th>
+            <th><h2><center>Due Date</center></h2></th>
+
+        </tr>
+
+        {% for item in paper_data %}
+
+            <tr>
+                <td align ="center"><a href="{{ item.get_editor_proposal }}">{{ item.title }}</td>
+                <td align ="center">{{ item.status }}</td>
+                <td align ="center">{{ item.due_date }}</td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+    <br>
+
+    </body>
+    </html>
+{% endblock %}

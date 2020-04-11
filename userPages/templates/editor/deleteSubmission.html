@@ -1,0 +1,19 @@
+<!--
+# Source: https://docs.djangoproject.com/en/3.0/ref/class-based-views/generic-editing/#django.views.generic.edit.DeleteView
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# This is a confirmation page for when the editor wants to delete a paper submission
+# from the database
+-->
+{% extends 'editorDashboard.html' %}
+
+{% block head %}
+
+    <form action='.' method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete the paper titled: "{{ object }}"?</p>
+        <p><input type="submit" value="Confirm"><a href="../"Cancel </a></p>
+    </form>
+
+{% endblock %}

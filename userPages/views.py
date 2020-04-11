@@ -1,10 +1,13 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from userPages.forms import Profile_Form
 import io
 from reportlab.pdfgen import canvas
+from django.urls import reverse
+from .models import Proposal # for deleting the paper in editor view
+
 
 
 def author(request):
@@ -160,3 +163,71 @@ def author_profile(request):
 
     }
     return render(request, 'author/author_profile.html', context=profile)
+
+
+# Source: N/A
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# This renders the view for the editorDashboard
+def editorManagement(request):
+    # Navbar values
+    function1 = "Paper Reviews"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/viewReviews"
+
+    # gets the title, status, and due date for all the papers
+    paper_data = Proposal.objects.only('title', 'status', 'due_date')
+
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'paper_data': paper_data}
+
+    return render(request, 'editor/editorManagement.html', args)
+
+# Source: ProposalDetailView
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# Calls the editorSubmissionManage page to be populated with database data
+class EditorSubmissionView(generic.DetailView):
+    model = Proposal
+    template_name = 'editor/editorSubmissionManage.html'
+    function1 = "Paper Reviews"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/viewReviews"
+
+# Source: "Try DJANGO Tutorial - 39 - Class Based Views - DeleteView" https://www.youtube.com/watch?v=a718ii0Lf6M
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# Goes to a page to confirm the deletion of a paper from the database
+class PaperDeleteView(generic.DeleteView):
+    model = Proposal
+    template_name = 'editor/deleteSubmission.html'
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Proposal, id=id_)
+
+
+# Source: N/A
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# Returns the page for the delete button to go to
+def gotoDelete(request):
+    # Navbar values
+    function1 = "Paper Reviews"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/viewReviews"
+
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable}
+
+    return render(request, 'editor/deleteSubmission.html', args)

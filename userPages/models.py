@@ -42,6 +42,14 @@ class Proposal(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
 
+    def get_editor_proposal(self):
+        """Returns the url to access a detail record for this submission."""
+        return reverse('manage-proposal', args=[str(self.id)])
+
+    def get_delete_proposal(self):
+        """Returns the url to access a delete confirmation for this ."""
+        return reverse('paper-delete', args=[str(self.id)])
+
     def __str__(self):
         return self.author_file
 

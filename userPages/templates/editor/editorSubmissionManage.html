@@ -1,0 +1,40 @@
+<!--
+# Source: proposal_detail.html
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# This page displays the details of the article that the editor chose on the Editor Management Page
+-->
+
+{% extends 'editorDashboard.html' %}
+
+{% block head %}
+
+    <!-- ALL POWER TO THE CSRF TOKEN -->
+    {% csrf_token %}
+
+  <h1>Paper Title: {{ proposal.title}}</h1>
+
+  <p><strong>Status:</strong> {{ proposal.status }}
+  <p><strong>Abstract:</strong> {{ proposal.abstract }}</p>
+  <p><strong>Upload Date:</strong> {{proposal.upload_date }}</p>
+
+
+    <h3> Reviewers</h3>
+    {% for entry in paper_data %}
+    <option value="{{ entry.id }}">{{ entry.name }}</option>
+
+    {% endfor %}
+
+
+    <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%">
+  <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">HERE!</a></p
+      <!-- would like this to be a button, not a link, but couldn't get it to work -->
+      <!-- ALSO THE DAMN THING ISN'T WORKING!!!! -->
+      <p><a href="{{ item.get_delete_proposal}}">DELETE SUBMISSION</a></p>
+
+
+  <div style="margin-left:20px;margin-top:20px">
+
+  </div>
+{% endblock %}
