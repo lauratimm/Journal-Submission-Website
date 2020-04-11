@@ -1,54 +1,90 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from django.shortcuts import render
-from userPages.forms import Profile_Form, Author_Resubmit_Form
+from django.shortcuts import render, redirect
+from userPages.forms import Profile_Form
 import io
 from reportlab.pdfgen import canvas
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
-
-
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney, Anna Chaykovska
+# Date Created: April 4, 2020
+# Date Updated: April 9, 2020
+# This displays the dahboard view for author, including all of their customized urls to specific views
+#
+# @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
 def author(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages,
     function1 = "Submissions"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/upload"
+    dashVariable2 = '/logout'
 
     num_proposal = Proposal.objects.only('')
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'num_proposal': num_proposal}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal}
+
 
     return render(request, 'authorDashboard.html', args)
 
-
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney, Anna Chaykovska
+# Date Created: April 4, 2020
+# Date Updated: April 9, 2020
+# This displays the dashboard view for reviewer, including all of their customized urls to specific views
+#
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
 def reviewer(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages,
     function1 = "Submitted Papers"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/proposal_list"
+    dashVariable2 = '/logout'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     return render(request, 'reviewerDashboard.html', args)
 
-
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney, Anna Chaykovska
+# Date Created: April 4, 2020
+# Date Updated: April 9, 2020
+# This displays the dahboard view for editor, including all of their customized urls to specific views
+#
+# @user_passes_test(lambda u: u.groups.filter(name='Editor').exists())
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
 def editor(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages,
     function1 = "Paper Reviews"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
+    dashVariable2 = '/logout'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     return render(request, 'editorDashboard.html', args)
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
 def reviewer_view_proposals(request):
     list_of_proposals = Proposal.objects.all()
     context = {
@@ -59,6 +95,9 @@ def reviewer_view_proposals(request):
     return render(request, 'reviewer/proposal_list.html', context=context)
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
 class ReviewerProposalListView(generic.ListView):
     model = Proposal
     context_object_name = 'Proposals to Review'
@@ -69,11 +108,16 @@ class ReviewerProposalListView(generic.ListView):
     #     return Proposal.objects
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# @login_required
 class ProposalDetailView(generic.DetailView):
     model = Proposal
     template_name = 'reviewer/proposal_detail.html'
 
 
+# @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
 def reviewer_pdf_view(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
@@ -148,7 +192,9 @@ def some_view(request):
 # Date Updated:
 # This view is for the journal submissions list on the Author Dashboard page
 
-
+# @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
 def author_view_journals(request):
     # Generate counts for proposals
     num_proposals = Proposal.objects.all()
@@ -163,29 +209,36 @@ def author_view_journals(request):
 # Date Updated:
 # This view is for the author profile on the Author Dashboard page
 
+# @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
+# @login_required
+def author_profile(request):
+    profile = {
+    }
+
 def author_profile(request):
     list_of_journals = Proposal.objects.all()
     profile = {'list_of journals': list_of_journals,
-               }
+    }
     return render(request, 'author/author_profile.html', context=profile)
 
+# Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
+# Author: Alex Tenney
+# Date Created: April 9, 2020
+# Date Updated: April 10, 2020
+# This logs users out from their accounts and redirects to the home page
+#
+# required the user to be logged in to navigate to the url of the page
+@login_required(login_url='/login')
+# sends the user back to home upon pressing the logout button
+def logout_view(request):
+    #since logging out includes loading a page, the request will be a get
+    if request.method == 'GET':
+        logout(request)
+        return redirect('/home/')
 
 class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
 
-    def author_resubmit(request):
-        form = Author_Resubmit_Form()
-        if request.method == 'POST':
-            form = Author_Resubmit_Form(request.POST, request.FILES)
-            if form.is_valid():
-                user_pr = form.save(commit=False)
-                user_pr.author_file = request.FILES['author_file']
-                file_type = user_pr.author_file.url.split('.')[-1]
-                file_type = file_type.lower()
-                if file_type not in FILE_TYPES:
-                    return render(request, 'profile_maker/error.html')
-                user_pr.save()
-                return render(request, 'profile_maker/details.html', {'user_pr': user_pr})
-        context = {"form": form, }
-        return render(request, 'author/author_detail.html', context)
+
+
