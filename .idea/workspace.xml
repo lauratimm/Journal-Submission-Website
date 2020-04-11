@@ -205,15 +205,4 @@
     </state>
     <state x="3655" y="342" key="com.intellij.ide.util.TipDialog/0.0.1200.760/3000.0.1920.1040@3000.0.1920.1040" timestamp="1585784509661" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/userPages/views.py</url>
-          <line>163</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
 </project>

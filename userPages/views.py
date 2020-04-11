@@ -177,7 +177,7 @@ def author_view_journals(request):
 # Date Updated:
 # This view is for the author profile on the Author Dashboard page
 # @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
-@login_required(login_url='/login')
+# @login_required
 def author_profile(request):
     profile = {
 
@@ -185,7 +185,7 @@ def author_profile(request):
     return render(request, 'author/author_profile.html', context=profile)
 
 
-@login_required(login_url='/login')
+# @login_required
 def logout_view(request):
     if request.method == 'GET':
         logout(request)
