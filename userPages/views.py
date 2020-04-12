@@ -7,6 +7,8 @@ import io
 from reportlab.pdfgen import canvas
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
 # Author: Alex Tenney, Anna Chaykovska
@@ -240,5 +242,10 @@ class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
 
-
+def index(request):
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        message = request.POST['message']
+        send_mail(subject, message, settings.EMAIL_HOST_USER, ['alexandratenney@hotmail.ca'], fail_silently=False)
+        return render(request, '../FrontEnd/contactUs.html')
 
