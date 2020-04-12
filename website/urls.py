@@ -26,7 +26,7 @@ urlpatterns = [
 
     path('login/', views.loginRequest, name = 'loginrequest'),
     path('', views.home, name = 'home'),
-    path('', include('userPages.urls')),
+    path('', include('userPages.urls'), name = 'userUrls'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

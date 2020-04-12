@@ -19,3 +19,4 @@ class TestUrls(SimpleTestCase):
         url = reverse('home')
         #print(resolve(url))
         self.assertEquals(resolve(url).func, home)
+
