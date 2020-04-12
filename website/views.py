@@ -71,8 +71,9 @@ def index(request):
 
     # variables for the path of one of the buttons
     dashVariable = "/contact"
+    dashVariable2 = "/login"
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
     if request.method == 'POST':
         subject = request.POST['subject']
         message = request.POST['message']
