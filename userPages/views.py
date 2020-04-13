@@ -7,6 +7,8 @@ import io
 from reportlab.pdfgen import canvas
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
 # Author: Alex Tenney, Anna Chaykovska
@@ -239,22 +241,6 @@ class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
 
-# def author_resubmit(request):
-    # form = Author_Resubmit_Form()
-    # if request.method == 'POST':
-    #     form = Author_Resubmit_Form(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         newfile = form.save(commit=False)
-    #         newfile.author_resubmit = request.FILES['author_resubmit']
-    #         file_type = newfile.author_resubmit.url.split('.')[-1]
-    #         file_type = file_type.lower()
-    #         if file_type not in FILE_TYPES:
-    #             return render(request, 'profile_maker/error.html')
-    #         newfile.save()
-    #         return render(request, 'author/good_resubmit.html', {'newfile': newfile})
-    # context = {"form": form, }
-    # return render(request, 'author/author_resubmit.html', context)
-
 # Source: Jeremey Stuart
 # Author: Laura Timm
 # Date Created: April 9, 2020
@@ -272,6 +258,13 @@ class Author_Resubmit(generic.UpdateView):
         def form_valid(self, form):
             print(form.cleaned_data)
             return super().form_valid(form)
+          
+def index(request):
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        message = request.POST['message']
+        send_mail(subject, message, settings.EMAIL_HOST_USER, ['alexandratenney@hotmail.ca'], fail_silently=False)
+        return render(request, '../FrontEnd/contactUs.html')
 
 def author_goodsubmit(request):
     list_of_proposals = Proposal.objects.all()

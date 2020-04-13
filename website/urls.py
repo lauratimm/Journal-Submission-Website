@@ -26,6 +26,7 @@ urlpatterns = [
     path('login/', views.loginRequest),
     path('', views.home),
     path('', include('userPages.urls')),
+    path('contact/', views.index),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
