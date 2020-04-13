@@ -59,3 +59,11 @@ class Author_Resubmit_Form(forms.ModelForm):
             'author_resubmit',
         ]
 
+
+class Review_Submit_Form(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields =[
+            'reviewer_1_comment',
+            'reviewer_1_file',
+        ]

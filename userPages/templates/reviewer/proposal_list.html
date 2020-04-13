@@ -1,12 +1,13 @@
-# Author: Anna Chaykovska
-# Date Created: April 5, 2020
-# Date Updated:
-# This page displays a list of proposals available for the viewer
+<!--Author: Anna Chaykovska-->
+<!--Date Created: April 5, 2020-->
+<!--Date Updated:-->
+<!--This page displays a list of proposals available for the viewer-->
 
 {% extends 'reviewerDashboard.html' %}
 
 {% block head %}
     <h1>Proposal List</h1>
+    <div class="Home Journals">
      {% if list_of_proposals %}
     <ul>
         {% for item in list_of_proposals %}
@@ -18,5 +19,6 @@
     {% else %}
         <p>There are no proposals in progress.</p>
     {% endif %}
+    </div>
 {% endblock %}
 
