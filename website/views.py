@@ -3,6 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User, Group
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # when view.home is called will send to HomePage.html
@@ -59,3 +61,23 @@ def loginRequest(request):
         form = AuthenticationForm(request.POST)
         return render(request, 'loginPage.html', {'form': form})
 
+def index(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages, including the dashboards
+    function1 = "Contact Us"
+    function2 = "Journals"
+    function3 = "About Us"
+    function4 = "Login"
+
+    # variables for the path of one of the buttons
+    dashVariable = "/contact"
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable}
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        message = request.POST['message']
+        send_mail(subject, message, settings.EMAIL_HOST_USER, ['alexandratenney@hotmail.ca'],
+                  fail_silently=False)
+        return render(request, 'contactUs.html', args)
+    else:
+        return render(request, 'contactUs.html', args)

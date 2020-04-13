@@ -3,4 +3,8 @@ db.sqlite3
 media/
 /profile_maker
 /pycache/
-.gitignore
+*.log
+*.pot
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/

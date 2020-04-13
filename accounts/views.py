@@ -12,7 +12,7 @@ def newAccount_view(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home.html')
+            return redirect('/login/')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/newAccount.html', {'form': form})
