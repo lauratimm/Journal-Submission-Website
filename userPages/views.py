@@ -255,10 +255,15 @@ class AuthorDetailView(generic.DetailView):
     # context = {"form": form, }
     # return render(request, 'author/author_resubmit.html', context)
 
+# Source: Jeremey Stuart
+# Author: Laura Timm
+# Date Created: April 9, 2020
+# Date Updated:
+# This view is for the resubmission resubmission
 class Author_Resubmit(generic.UpdateView):
         template_name = "author/author_resubmit.html"
         form_class = Author_Resubmit_Form
-        # success_url = '/good_resubmit/'
+        success_url = '/good_resubmit/'
 
         def get_object(self):
             id_ = self.kwargs.get("id")
@@ -268,5 +273,9 @@ class Author_Resubmit(generic.UpdateView):
             print(form.cleaned_data)
             return super().form_valid(form)
 
-
-
+def author_goodsubmit(request):
+    list_of_proposals = Proposal.objects.all()
+    context = {
+        'list_of_proposals': list_of_proposals,
+    }
+    return render(request, 'author/good_resubmit.html', context)
