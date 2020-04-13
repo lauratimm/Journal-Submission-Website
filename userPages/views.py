@@ -1,12 +1,11 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from django.shortcuts import render, get_object_or_404
-from userPages.forms import Profile_Form
+from django.shortcuts import render, get_object_or_404, redirect
+from userPages.forms import Profile_Form, Editor_Form
 import io
 from reportlab.pdfgen import canvas
 from django.urls import reverse
-from .models import Proposal # for deleting the paper in editor view
 
 
 
@@ -200,34 +199,43 @@ class EditorSubmissionView(generic.DetailView):
     function4 = "Logout"
     dashVariable = "/viewReviews"
 
-# Source: "Try DJANGO Tutorial - 39 - Class Based Views - DeleteView" https://www.youtube.com/watch?v=a718ii0Lf6M
-# Author: Jeremy Stuart
-# Date Created: April 10, 2020
-# Date Updated:
-# Goes to a page to confirm the deletion of a paper from the database
-class PaperDeleteView(generic.DeleteView):
-    model = Proposal
-    template_name = 'editor/deleteSubmission.html'
-
-    def get_object(self):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Proposal, id=id_)
-
-
 # Source: N/A
 # Author: Jeremy Stuart
 # Date Created: April 10, 2020
 # Date Updated:
 # Returns the page for the delete button to go to
-def gotoDelete(request):
+def gotoDelete(request, id):
     # Navbar values
     function1 = "Paper Reviews"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
-
+    obj = get_object_or_404(Proposal, id=id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect('../../../')
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable}
+            'dashVariable': dashVariable, "object": obj}
 
     return render(request, 'editor/deleteSubmission.html', args)
+
+
+# Source: https://youtu.be/KB_wDXBwhUA (Try DJANGO Tutorial - 38 - Class Based Views - CreateView and UpdateView)
+# Author: Jeremy Stuart
+# Date Created: April 13, 2020
+# Date Updated:
+# Form for the editor to update values for a journal submission, pulls in the Editor_Form from the forms page
+class JournalUpdateValues(generic.UpdateView):
+    template_name = "editor/editValues.html"
+    form_class = Editor_Form
+    success_url = '/editorMan/'
+
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Proposal, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)

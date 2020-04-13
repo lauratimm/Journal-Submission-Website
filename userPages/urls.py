@@ -5,7 +5,7 @@ from . import views
 from website import settings
 from django.conf.urls.static import static
 
-from .views import author_view_journals, author_profile, editorManagement
+from .views import author_view_journals, author_profile, editorManagement, gotoDelete
 
 urlpatterns = [
     url('authorDash/', views.author),
@@ -17,9 +17,9 @@ urlpatterns = [
     path('upload/', views.create_profile, name = 'create'),
     path('journals/', author_view_journals, name = 'Journal View'),
     path('editorMan/', editorManagement, name = 'Editor View'),
+    path('editor/<int:id>/delete/', gotoDelete, name='delete-submission'),
     path('editor/<int:pk>', views.EditorSubmissionView.as_view(), name='manage-proposal'),
-    path('<int:pk>/delete', views.PaperDeleteView.as_view(), name="paper-delete"),
-    path('delete/', views.gotoDelete, name = 'delete-submission'),
+    path('editor/<int:id>/update/', views.JournalUpdateValues.as_view(), name = 'update-values'),
     path('about/', author_profile, name = 'Author Profile'),
 ]
 
