@@ -59,7 +59,6 @@ class Proposal(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
 
-<<<<<<< HEAD
     def get_editor_proposal(self):
         """Returns the url to access a detail record for this submission."""
         return reverse('manage-proposal', args=[str(self.id)])
@@ -67,11 +66,10 @@ class Proposal(models.Model):
     def get_delete_proposal(self):
         """Returns the url to access a delete confirmation for this ."""
         return reverse('paper-delete', args=[str(self.id)])
-=======
+
     def get_author_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('journal-detail', args=[str(self.id)])
->>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81
 
     def __str__(self):
         return self.author_file
@@ -81,9 +79,4 @@ class Comment(models.Model):
     proposal = models.ForeignKey('Proposal', related_name='%(class)s_proposal_id', on_delete=models.SET_NULL, null=True)
     reviewer = models.ForeignKey(User, related_name='%(class)s_username', on_delete=models.SET_NULL, null=True)
     paper_version = models.IntegerField(max_length=10)
-<<<<<<< HEAD
     comment_text = models.TextField(max_length=500, blank=True, null=True)
-=======
-    comment_text = models.TextField(max_length=500, blank=True, null=True)
-
->>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81
