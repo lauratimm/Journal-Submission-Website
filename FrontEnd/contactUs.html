@@ -1,0 +1,37 @@
+ <!--
+#Source: https://www.youtube.com/watch?v=8nTKFStBNNc
+            https://www.w3schools.com/howto/howto_css_contact_form.asp
+# Author: Alex Tenney
+# Date Created: April 11, 2020
+# Date Updated:
+#
+#
+ -->
+{% extends 'dashboardBase.html' %}
+
+{% block head %}
+
+<div class="container">
+  <form method="POST">{% csrf_token %}
+    <p>
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    </p>
+      <p>
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    </p>
+      <p>
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" name="subject" placeholder="Subject Line..">
+    </p>
+      <p>
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+    </p>
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+
+{% endblock %}
