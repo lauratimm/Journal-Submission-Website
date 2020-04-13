@@ -32,7 +32,7 @@ class Journal_View_Form(forms.ModelForm):
             'version',
             ]
 
-<<<<<<< HEAD
+
 #Editor Form for Changing paper attributes/values
 # Source:
 # Author: Jeremy Stuart
@@ -52,11 +52,10 @@ class Editor_Form(forms.ModelForm):
             'due_date',
             ]
 
-=======
 class Author_Resubmit_Form(forms.ModelForm):
     class Meta:
         model = Proposal
         fields =[
             'author_resubmit',
         ]
->>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81
+
