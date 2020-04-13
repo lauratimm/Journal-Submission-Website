@@ -15,7 +15,7 @@ def newAccount_view(request):
             return redirect('home.html')
     else:
         form = UserCreationForm()
-    return render(request, 'accounts/newAccount.html', {'form': form})
+    return render(request, 'authorDashboard.html', {'form': form})
 
 
 # from django.shortcuts import render, redirect
