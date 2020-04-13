@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from userPages.forms import Profile_Form, Editor_Form, Author_Resubmit_Form, Review_Submit_Form
+from userPages.forms import Profile_Form, Editor_Form, Author_Resubmit_Form, Review_Submit_Form1,  Review_Submit_Form2, Review_Submit_Form3
 import io
 from reportlab.pdfgen import canvas
 from django.shortcuts import render, redirect, get_object_or_404
@@ -141,10 +141,10 @@ class ProposalDetailView(generic.DetailView):
 # Date Created: April 13, 2020
 # Date Updated:
 # This view is for the resubmission resubmission
-class Reviewer_Add_Review(generic.UpdateView):
+class Reviewer_Add_Review1(generic.UpdateView):
         template_name = "reviewer/reviewer_add_review.html"
-        form_class = Review_Submit_Form
-        success_url = '/good_review_submit/'
+        form_class = Review_Submit_Form1
+        success_url = '/proposal_list/'
 
         def get_object(self):
             id_ = self.kwargs.get("id")
@@ -153,6 +153,42 @@ class Reviewer_Add_Review(generic.UpdateView):
         def form_valid(self, form):
             print(form.cleaned_data)
             return super().form_valid(form)
+
+
+class Reviewer_Add_Review2(generic.UpdateView):
+    template_name = "reviewer/reviewer_add_review.html"
+    form_class = Review_Submit_Form2
+    success_url = '/proposal_list/'
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Proposal, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+
+class Reviewer_Add_Review3(generic.UpdateView):
+    template_name = "reviewer/reviewer_add_review.html"
+    form_class = Review_Submit_Form3
+    success_url = '/proposal_list/'
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Proposal, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+
+def reviewer_goodsubmit(request):
+    list_of_proposals = Proposal.objects.all()
+    context = {
+        'list_of_proposals': list_of_proposals,
+    }
+    return render(request, 'reviewer/good_review_submit.html', context)
 
 # Source: Laura Timm
 # Author: Anna Chaykovska
@@ -389,6 +425,7 @@ def index(request):
         message = request.POST['message']
         send_mail(subject, message, settings.EMAIL_HOST_USER, ['alexandratenney@hotmail.ca'], fail_silently=False)
         return render(request, '../FrontEnd/contactUs.html')
+
 
 def author_goodsubmit(request):
     list_of_proposals = Proposal.objects.all()

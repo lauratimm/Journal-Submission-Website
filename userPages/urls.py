@@ -24,17 +24,23 @@ urlpatterns = [
 
     path('proposal_list/', views.reviewer_view_proposals, name='Proposal View'),
     path('proposal/<int:pk>', views.ProposalDetailView.as_view(), name='proposal-detail'),
-    path('proposal/<int:id>/submitReview', views.Reviewer_Add_Review.as_view(), name = 'add-review'),
+    path('proposal/<int:id>/submitReview1', views.Reviewer_Add_Review1.as_view(), name = 'add-review-1'),
+    path('proposal/<int:id>/submitReview2', views.Reviewer_Add_Review2.as_view(), name = 'add-review-2'),
+    path('proposal/<int:id>/submitReview3', views.Reviewer_Add_Review3.as_view(), name = 'add-review-3'),
+    path('good_review_submit/', views.reviewer_goodsubmit, name = 'good review'),
+
     path('upload/', views.create_profile, name = 'create'),
     # path('resubmit/', views.author_resubmit, name = 'resubmit'),
     path('journals/<int:id>/resubmit', views.Author_Resubmit.as_view(), name='update-submit'),
     path('good_resubmit/', views.author_goodsubmit, name = 'good'),
     path('journals/', author_view_journals, name = 'Journal View'),
+
     path('editorMan/', editorManagement, name = 'Editor View'),
     path('editor/<int:id>/delete/', gotoDelete, name='delete-submission'),
     path('editor/<int:pk>', views.EditorSubmissionView.as_view(), name='manage-proposal'),
     path('editor/<int:id>/update/', views.JournalUpdateValues.as_view(), name = 'update-values'),
     path('journals/<int:pk>', views.AuthorDetailView.as_view(), name='journal-detail'),
+
     path('about/', author_profile, name = 'Author Profile'),
     path('logout/', views.logout_view, name = 'logout'),
 ]

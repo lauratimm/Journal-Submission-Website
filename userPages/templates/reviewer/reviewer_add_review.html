@@ -17,42 +17,79 @@
                 <h2 class="display-4">Add to the Review</h2>
         {% block replace %}
                 <hr class="my-4">
-                {% if user == proposal.reviewer_1 %}
-                 <form method="POST" enctype="multipart/form-data">
-                    <!-- Very Important csrf Token -->
-                    {% csrf_token %}
-                    <table>
-                        <p><strong>Your Comment:</strong></p> {{ form.reviewer_1_comment }}
-                        <p><strong>Choose PDF File to upload:</strong> {{ form.reviewer_1_file }} </p>
-                    </table><br>
-                    <input type="submit" class="btn btn-primary btn-lg" name="register">
-                </form>
 
-                {% elif user == proposal.reviewer_2 %}
                 <form method="POST" enctype="multipart/form-data">
                     <!-- Very Important csrf Token -->
                     {% csrf_token %}
                     <table>
-                        <p><strong>Your Comment:</strong></p> {{ form.reviewer_2_comment }}
-                        <p><strong>Choose PDF File to upload:</strong> {{ form.reviewer_2_file }}</p>
+                        {{ form.as_table }}
                     </table><br>
                     <input type="submit" class="btn btn-primary btn-lg" name="register">
                 </form>
 
-                {% elif user == proposal.reviewer_3 %}
-                <form method="POST" enctype="multipart/form-data">
-                    <!-- Very Important csrf Token -->
-                    {% csrf_token %}
-                    <table>
-                        <p><strong>Your Comment:</strong></p> {{ form.reviewer_3_comment }}
-                        <p><strong>Choose PDF File to upload:</strong>{{ form.reviewer_3_file }} </p>
-                    </table><br>
-                    <input type="submit" class="btn btn-primary btn-lg" name="register">
-                </form>
+<!--                        {% if user == proposal.reviewer_1 %}-->
+<!--                            <form method="POST" enctype="multipart/form-data">-->
+<!--                                {% csrf_token %}-->
+<!--                                <fieldset>-->
+<!--                                {{ forms.fieldsets.rev_1.as_table }}-->
+<!--                                </fieldset>-->
+<!--                                <input type="submit" class="btn btn-primary btn-lg" name="register">-->
+<!--                            </form>-->
+<!--                        {% elif user == proposal.reviewer_2 %}-->
+<!--                            <form method="POST" enctype="multipart/form-data">-->
+<!--                                {% csrf_token %}-->
+<!--                                <fieldset>-->
+<!--                                {{ forms.fieldsets.rev_2.as_table }}-->
+<!--                                </fieldset>-->
+<!--                                <input type="submit" class="btn btn-primary btn-lg" name="register">-->
+<!--                            </form>-->
+<!--                        {% elif user == proposal.reviewer_3 %}-->
+<!--                            <form method="POST" enctype="multipart/form-data">-->
+<!--                                {% csrf_token %}-->
+<!--                                <fieldset>-->
+<!--                                {{ forms.fieldsets.rev_3.as_table }}-->
+<!--                                </fieldset>-->
+<!--                                <input type="submit" class="btn btn-primary btn-lg" name="register">-->
+<!--                            </form>-->
+<!--                        {% endif %}-->
 
-                {% else %}
-                <p><strong>Bad Form</strong></p>
-                {% endif %}
+
+<!--                {% if user == proposal.reviewer_1 %}-->
+<!--                 <form method="POST" enctype="multipart/form-data">-->
+<!--                    &lt;!&ndash; Very Important csrf Token &ndash;&gt;-->
+<!--                    {% csrf_token %}-->
+<!--                    <table>-->
+<!--                        <p><strong>Your Comment:</strong></p> {{ form.reviewer_1_comment }}-->
+<!--                        <p><strong>Choose PDF File to upload:</strong> {{ form.reviewer_1_file }} </p>-->
+<!--                    </table><br>-->
+<!--                    <input type="submit" class="btn btn-primary btn-lg" name="register">-->
+<!--                </form>-->
+
+<!--                {% elif user == proposal.reviewer_2 %}-->
+<!--                <form method="POST" enctype="multipart/form-data">-->
+<!--                    &lt;!&ndash; Very Important csrf Token &ndash;&gt;-->
+<!--                    {% csrf_token %}-->
+<!--                    <table>-->
+<!--                        <p><strong>Your Comment:</strong></p> {{ form.reviewer_2_comment }}-->
+<!--                        <p><strong>Choose PDF File to upload:</strong> {{ form.reviewer_2_file }}</p>-->
+<!--                    </table><br>-->
+<!--                    <input type="submit" class="btn btn-primary btn-lg" name="register">-->
+<!--                </form>-->
+
+<!--                {% elif user == proposal.reviewer_3 %}-->
+<!--                <form method="POST" enctype="multipart/form-data">-->
+<!--                    &lt;!&ndash; Very Important csrf Token &ndash;&gt;-->
+<!--                    {% csrf_token %}-->
+<!--                    <table>-->
+<!--                        <p><strong>Your Comment:</strong></p> {{ form.reviewer_3_comment }}-->
+<!--                        <p><strong>Choose PDF File to upload:</strong>{{ form.reviewer_3_file }} </p>-->
+<!--                    </table><br>-->
+<!--                    <input type="submit" class="btn btn-primary btn-lg" name="register">-->
+<!--                </form>-->
+
+<!--                {% else %}-->
+<!--                <p><strong>Bad Form</strong></p>-->
+<!--                {% endif %}-->
 
             </div>
         </center>
