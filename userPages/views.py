@@ -154,7 +154,11 @@ class Reviewer_Add_Review1(generic.UpdateView):
             print(form.cleaned_data)
             return super().form_valid(form)
 
-
+# Source: Jeremey Stuart, Laura Timm
+# Author: Anna Chaykovska
+# Date Created: April 13, 2020
+# Date Updated:
+# This view is for the resubmission resubmission
 class Reviewer_Add_Review2(generic.UpdateView):
     template_name = "reviewer/reviewer_add_review.html"
     form_class = Review_Submit_Form2
@@ -168,7 +172,11 @@ class Reviewer_Add_Review2(generic.UpdateView):
         print(form.cleaned_data)
         return super().form_valid(form)
 
-
+# Source: Jeremey Stuart, Laura Timm
+# Author: Anna Chaykovska
+# Date Created: April 13, 2020
+# Date Updated:
+# This view is for the resubmission resubmission
 class Reviewer_Add_Review3(generic.UpdateView):
     template_name = "reviewer/reviewer_add_review.html"
     form_class = Review_Submit_Form3
@@ -182,13 +190,6 @@ class Reviewer_Add_Review3(generic.UpdateView):
         print(form.cleaned_data)
         return super().form_valid(form)
 
-
-def reviewer_goodsubmit(request):
-    list_of_proposals = Proposal.objects.all()
-    context = {
-        'list_of_proposals': list_of_proposals,
-    }
-    return render(request, 'reviewer/good_review_submit.html', context)
 
 # Source: Laura Timm
 # Author: Anna Chaykovska

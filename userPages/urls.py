@@ -27,7 +27,6 @@ urlpatterns = [
     path('proposal/<int:id>/submitReview1', views.Reviewer_Add_Review1.as_view(), name = 'add-review-1'),
     path('proposal/<int:id>/submitReview2', views.Reviewer_Add_Review2.as_view(), name = 'add-review-2'),
     path('proposal/<int:id>/submitReview3', views.Reviewer_Add_Review3.as_view(), name = 'add-review-3'),
-    path('good_review_submit/', views.reviewer_goodsubmit, name = 'good review'),
 
     path('upload/', views.create_profile, name = 'create'),
     # path('resubmit/', views.author_resubmit, name = 'resubmit'),
