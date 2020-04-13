@@ -1,8 +1,8 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from django.shortcuts import render, redirect
-from userPages.forms import Profile_Form
+from django.shortcuts import render, redirect, get_object_or_404
+from userPages.forms import Profile_Form, Author_Resubmit_Form
 import io
 from reportlab.pdfgen import canvas
 from django.contrib.auth import logout
@@ -22,7 +22,7 @@ from django.conf import settings
 def author(request):
     # the labels for all of the buttons, variables because this is a template and is inherited through-out
     # the pages,
-    function1 = "Submissions"
+    function1 = "Submit Paper"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
@@ -149,7 +149,6 @@ def reviewer_pdf_view(request):
 # uploaded to the data base. If it is not a pdf it shows an error message.
 FILE_TYPES = ['pdf']
 
-
 def create_profile(request):
     form = Profile_Form()
     if request.method == 'POST':
@@ -242,6 +241,24 @@ class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
 
+# Source: Jeremey Stuart
+# Author: Laura Timm
+# Date Created: April 9, 2020
+# Date Updated:
+# This view is for the resubmission resubmission
+class Author_Resubmit(generic.UpdateView):
+        template_name = "author/author_resubmit.html"
+        form_class = Author_Resubmit_Form
+        success_url = '/good_resubmit/'
+
+        def get_object(self):
+            id_ = self.kwargs.get("id")
+            return get_object_or_404(Proposal, id=id_)
+
+        def form_valid(self, form):
+            print(form.cleaned_data)
+            return super().form_valid(form)
+          
 def index(request):
     if request.method == 'POST':
         subject = request.POST['subject']
@@ -249,3 +266,9 @@ def index(request):
         send_mail(subject, message, settings.EMAIL_HOST_USER, ['alexandratenney@hotmail.ca'], fail_silently=False)
         return render(request, '../FrontEnd/contactUs.html')
 
+def author_goodsubmit(request):
+    list_of_proposals = Proposal.objects.all()
+    context = {
+        'list_of_proposals': list_of_proposals,
+    }
+    return render(request, 'author/good_resubmit.html', context)
