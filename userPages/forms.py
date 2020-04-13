@@ -32,9 +32,31 @@ class Journal_View_Form(forms.ModelForm):
             'version',
             ]
 
+<<<<<<< HEAD
+#Editor Form for Changing paper attributes/values
+# Source:
+# Author: Jeremy Stuart
+# Date Created: March 13, 2020
+# Date Updated:
+# Sets up the fields to be displayed and updated from the database
+# this gets imported in views for creating the page
+class Editor_Form(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields = [
+            'reviewer_1',
+            'reviewer_2',
+            'reviewer_3',
+            'status',
+            'editor_comments',
+            'due_date',
+            ]
+
+=======
 class Author_Resubmit_Form(forms.ModelForm):
     class Meta:
         model = Proposal
         fields =[
             'author_resubmit',
         ]
+>>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81

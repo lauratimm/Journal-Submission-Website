@@ -1,6 +1,16 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
+<<<<<<< HEAD
+from django.shortcuts import render, get_object_or_404, redirect
+from userPages.forms import Profile_Form, Editor_Form
+import io
+from reportlab.pdfgen import canvas
+from django.urls import reverse
+
+
+
+=======
 from django.shortcuts import render, redirect, get_object_or_404
 from userPages.forms import Profile_Form, Author_Resubmit_Form
 import io
@@ -19,6 +29,7 @@ from django.conf import settings
 # @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
 # required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
+>>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81
 def author(request):
     # the labels for all of the buttons, variables because this is a template and is inherited through-out
     # the pages,
@@ -222,6 +233,85 @@ def author_profile(request):
     }
     return render(request, 'author/author_profile.html', context=profile)
 
+<<<<<<< HEAD
+
+# Source: N/A
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# This renders the view for the editorDashboard
+def editorManagement(request):
+    # Navbar values
+    function1 = "Paper Reviews"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/viewReviews"
+
+    # gets the title, status, and due date for all the papers
+    paper_data = Proposal.objects.only('title', 'status', 'due_date')
+
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'paper_data': paper_data}
+
+    return render(request, 'editor/editorManagement.html', args)
+
+# Source: ProposalDetailView
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# Calls the editorSubmissionManage page to be populated with database data
+class EditorSubmissionView(generic.DetailView):
+    model = Proposal
+    template_name = 'editor/editorSubmissionManage.html'
+    function1 = "Paper Reviews"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/viewReviews"
+
+# Source: N/A
+# Author: Jeremy Stuart
+# Date Created: April 10, 2020
+# Date Updated:
+# Returns the page for the delete button to go to
+def gotoDelete(request, id):
+    # Navbar values
+    function1 = "Paper Reviews"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/viewReviews"
+    obj = get_object_or_404(Proposal, id=id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect('../../../')
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, "object": obj}
+
+    return render(request, 'editor/deleteSubmission.html', args)
+
+
+# Source: https://youtu.be/KB_wDXBwhUA (Try DJANGO Tutorial - 38 - Class Based Views - CreateView and UpdateView)
+# Author: Jeremy Stuart
+# Date Created: April 13, 2020
+# Date Updated:
+# Form for the editor to update values for a journal submission, pulls in the Editor_Form from the forms page
+class JournalUpdateValues(generic.UpdateView):
+    template_name = "editor/editValues.html"
+    form_class = Editor_Form
+    success_url = '/editorMan/'
+
+
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Proposal, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+=======
 # Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
 # Author: Alex Tenney
 # Date Created: April 9, 2020
@@ -272,3 +362,4 @@ def author_goodsubmit(request):
         'list_of_proposals': list_of_proposals,
     }
     return render(request, 'author/good_resubmit.html', context)
+>>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81
