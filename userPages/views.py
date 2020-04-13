@@ -2,7 +2,7 @@ from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
 from django.shortcuts import render, redirect
-from userPages.forms import Profile_Form
+from userPages.forms import Profile_Form, Author_Resubmit_Form
 import io
 from reportlab.pdfgen import canvas
 from django.contrib.auth import logout
@@ -20,7 +20,7 @@ from django.contrib.auth.decorators import login_required
 def author(request):
     # the labels for all of the buttons, variables because this is a template and is inherited through-out
     # the pages,
-    function1 = "Submissions"
+    function1 = "Submit Paper"
     function2 = "Journals"
     function3 = "Profile"
     function4 = "Logout"
@@ -147,7 +147,6 @@ def reviewer_pdf_view(request):
 # uploaded to the data base. If it is not a pdf it shows an error message.
 FILE_TYPES = ['pdf']
 
-
 def create_profile(request):
     form = Profile_Form()
     if request.method == 'POST':
@@ -239,6 +238,22 @@ def logout_view(request):
 class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
+
+def author_resubmit(request):
+    form = Author_Resubmit_Form()
+    if request.method == 'POST':
+        form = Author_Resubmit_Form(request.POST, request.FILES)
+        if form.is_valid():
+            newfile = form.save(commit=False)
+            newfile.author_resubmit = request.FILES['author_resubmit']
+            file_type = newfile.author_resubmit.url.split('.')[-1]
+            file_type = file_type.lower()
+            if file_type not in FILE_TYPES:
+                return render(request, 'profile_maker/error.html')
+            newfile.save()
+            return render(request, 'author/good_resubmit.html', {'newfile': newfile})
+    context = {"form": form, }
+    return render(request, 'author/author_resubmit.html', context)
 
 
 

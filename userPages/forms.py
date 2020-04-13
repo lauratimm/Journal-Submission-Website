@@ -32,7 +32,8 @@ class Journal_View_Form(forms.ModelForm):
             'version',
             ]
 
-class Author_Resubmit_Form(forms.Form):
+class Author_Resubmit_Form(forms.ModelForm):
+    class Meta:
         model = Proposal
         fields =[
             'author_resubmit',

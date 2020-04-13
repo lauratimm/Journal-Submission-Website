@@ -13,11 +13,11 @@
     </head>
     <body>
         <center>
-            <div class="jumbotron">
-                <h1 class="display-4">Resubmit File</h1>
+             <div class="Home Journals">
+                <h1> Resubmit File</h1>
                         {% block replace %}
                 <h2>Please Fill in the Following to Upload File</h2>
-                <hr class="my-4">
+
                 <form method="POST" enctype="multipart/form-data">
                     <!-- Very Important csrf Token -->
                     {% csrf_token %}
