@@ -1,20 +1,10 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-<<<<<<< HEAD
-from django.shortcuts import render, get_object_or_404, redirect
-from userPages.forms import Profile_Form, Editor_Form
+from userPages.forms import Profile_Form, Editor_Form, Author_Resubmit_Form
 import io
 from reportlab.pdfgen import canvas
-from django.urls import reverse
-
-
-
-=======
 from django.shortcuts import render, redirect, get_object_or_404
-from userPages.forms import Profile_Form, Author_Resubmit_Form
-import io
-from reportlab.pdfgen import canvas
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -29,7 +19,7 @@ from django.conf import settings
 # @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
 # required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
->>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81
+
 def author(request):
     # the labels for all of the buttons, variables because this is a template and is inherited through-out
     # the pages,
@@ -233,8 +223,6 @@ def author_profile(request):
     }
     return render(request, 'author/author_profile.html', context=profile)
 
-<<<<<<< HEAD
-
 # Source: N/A
 # Author: Jeremy Stuart
 # Date Created: April 10, 2020
@@ -302,8 +290,6 @@ class JournalUpdateValues(generic.UpdateView):
     form_class = Editor_Form
     success_url = '/editorMan/'
 
-
-
     def get_object(self):
         id_ = self.kwargs.get("id")
         return get_object_or_404(Proposal, id=id_)
@@ -311,7 +297,8 @@ class JournalUpdateValues(generic.UpdateView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
-=======
+
+
 # Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
 # Author: Alex Tenney
 # Date Created: April 9, 2020
@@ -362,4 +349,3 @@ def author_goodsubmit(request):
         'list_of_proposals': list_of_proposals,
     }
     return render(request, 'author/good_resubmit.html', context)
->>>>>>> 5a70d3dcc87d98ddc4a8fc5e4abdccb6920d9f81
