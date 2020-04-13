@@ -232,6 +232,7 @@ class JournalUpdateValues(generic.UpdateView):
     success_url = '/editorMan/'
 
 
+
     def get_object(self):
         id_ = self.kwargs.get("id")
         return get_object_or_404(Proposal, id=id_)
