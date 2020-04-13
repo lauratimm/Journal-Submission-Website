@@ -10,21 +10,39 @@ class Paper(models.Model):
     upload_date = models.DateField(blank=True, null=True)
     file = models.FileField(null=True, blank=True)
 
+
+    def get_author(self):
+        return self.author.username
+
+    def get_version(self):
+        return self.version
+
+    def get_uploadDate(self):
+        return self.upload_date
+
+
 class Journal(models.Model):
     name = models.TextField(max_length=100)
     # Maybe foreign key
     institution = models.TextField(max_length=100)
     editor = models.ForeignKey(User, related_name='%(class)s_username', on_delete=models.SET_NULL, null=True)
 
-    def __self__(self):
+    def get_institution(self):
+        return self.institution
+
+    def get_editor(self):
+        return self.editor.username
+
+    def get_journalName(self):
         return self.name
+
 
 
 class Institution(models.Model):
     name = models.TextField(max_length=100)
     address = models.TextField(max_length=200)
 
-    def __self__(self):
+    def get_Name(self):
         return self.name
 
 
@@ -62,18 +80,6 @@ class Proposal(models.Model):
     author_resubmit = models.FileField(null=True, blank=True)
 
 
-    def __init__(self, author, reviewer_1, reviewer_2, reviewer_3, status, version):
-        self.author = author
-        self.reviewer_1 = reviewer_1
-        self.reviewer_2 = reviewer_2,
-        self.reviewer_3 = reviewer_3,
-        self.author_file = default,
-        self.reviewer_file = default,
-        self.due_date = datetime.datetime(2020,10,11)
-        self.upload_date = datetime.datetime.now()
-        self.version = version
-        self.status = status
-
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
@@ -85,13 +91,20 @@ class Proposal(models.Model):
 
     def get_reviewers(self):
         """Set up for testing """
-        return 'Reviewers are : ' + self.reviewer_1 + ', ' + self.reviewer_2 + ', ' + self.reviewer_3
+        return 'Reviewers are : ' + str(self.reviewer_1) + ', ' + str(self.reviewer_2) + ', ' + str(self.reviewer_3)
 
     def get_dueDate(self):
         """Set up for testing """
-        return 'Due date is ' + self.due_date
-    def __str__(self):
-        return self.author_file
+        return self.due_date
+
+    def get_status(self):
+        return self.status
+
+    def get_version(self):
+        return self.version
+
+    def get_uploadDate(self):
+        return self.upload_date
 
 
 class Comment(models.Model):
