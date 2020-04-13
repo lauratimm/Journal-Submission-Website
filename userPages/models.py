@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 from django.urls import reverse  # Used to generate URLs by reversing the URL patterns
 from django.utils import timezone
 
+
+class Paper(models.Model):
+    author = models.ForeignKey(User, related_name='%(class)s_author', on_delete= models.SET_NULL, null=True)
+    version = models.IntegerField(max_length=10)
+    upload_date = models.DateField(blank=True, null=True)
+    file = models.FileField(null=True, blank=True)
+
 class Journal(models.Model):
     name = models.TextField(max_length=100)
     # Maybe foreign key
@@ -59,22 +66,34 @@ class Proposal(models.Model):
     author_resubmit = models.FileField(null=True, blank=True)
 
 
+    def __init__(self, author, reviewer_1, reviewer_2, reviewer_3, status, version):
+        self.author = author
+        self.reviewer_1 = reviewer_1
+        self.reviewer_2 = reviewer_2,
+        self.reviewer_3 = reviewer_3,
+        self.author_file = default,
+        self.reviewer_file = default,
+        self.due_date = datetime.datetime(2020,10,11)
+        self.upload_date = datetime.datetime.now()
+        self.version = version
+        self.status = status
+
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('proposal-detail', args=[str(self.id)])
 
-    def get_editor_proposal(self):
-        """Returns the url to access a detail record for this submission."""
-        return reverse('manage-proposal', args=[str(self.id)])
 
-    def get_delete_proposal(self):
-        """Returns the url to access a delete confirmation for this ."""
-        return reverse('paper-delete', args=[str(self.id)])
+    def get_author(self):
+        """Set up for testing"""
+        return 'Author is: ' + str(self.author)
 
-    def get_author_url(self):
-        """Returns the url to access a detail record for this book."""
-        return reverse('journal-detail', args=[str(self.id)])
+    def get_reviewers(self):
+        """Set up for testing """
+        return 'Reviewers are : ' + self.reviewer_1 + ', ' + self.reviewer_2 + ', ' + self.reviewer_3
 
+    def get_dueDate(self):
+        """Set up for testing """
+        return 'Due date is ' + self.due_date
     def __str__(self):
         return self.author_file
 

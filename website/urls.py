@@ -20,13 +20,12 @@ from django.urls import path, include
 from . import views, settings
 
 urlpatterns = [
-    url('admin/', admin.site.urls),
+    url('admin/', admin.site.urls, name = 'admin'),
     url('home/', include('home.urls')),
     url('accounts/', include('accounts.urls')),
-    path('login/', views.loginRequest),
-    path('', views.home),
-    path('', include('userPages.urls')),
-    path('contact/', views.index),
+
+    path('login/', views.loginRequest, name = 'loginrequest'),
+    path('', views.home, name = 'home'),
+    path('', include('userPages.urls'), name = 'userUrls'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
