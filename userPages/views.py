@@ -1,7 +1,7 @@
 from django.views import generic
 from userPages.models import Journal, Proposal, Institution, Comment
 from django.http import FileResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from userPages.forms import Profile_Form, Author_Resubmit_Form
 import io
 from reportlab.pdfgen import canvas
@@ -239,21 +239,34 @@ class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
 
-def author_resubmit(request):
-    form = Author_Resubmit_Form()
-    if request.method == 'POST':
-        form = Author_Resubmit_Form(request.POST, request.FILES)
-        if form.is_valid():
-            newfile = form.save(commit=False)
-            newfile.author_resubmit = request.FILES['author_resubmit']
-            file_type = newfile.author_resubmit.url.split('.')[-1]
-            file_type = file_type.lower()
-            if file_type not in FILE_TYPES:
-                return render(request, 'profile_maker/error.html')
-            newfile.save()
-            return render(request, 'author/good_resubmit.html', {'newfile': newfile})
-    context = {"form": form, }
-    return render(request, 'author/author_resubmit.html', context)
+# def author_resubmit(request):
+    # form = Author_Resubmit_Form()
+    # if request.method == 'POST':
+    #     form = Author_Resubmit_Form(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         newfile = form.save(commit=False)
+    #         newfile.author_resubmit = request.FILES['author_resubmit']
+    #         file_type = newfile.author_resubmit.url.split('.')[-1]
+    #         file_type = file_type.lower()
+    #         if file_type not in FILE_TYPES:
+    #             return render(request, 'profile_maker/error.html')
+    #         newfile.save()
+    #         return render(request, 'author/good_resubmit.html', {'newfile': newfile})
+    # context = {"form": form, }
+    # return render(request, 'author/author_resubmit.html', context)
+
+class Author_Resubmit(generic.UpdateView):
+        template_name = "author/author_resubmit.html"
+        form_class = Author_Resubmit_Form
+        # success_url = '/good_resubmit/'
+
+        def get_object(self):
+            id_ = self.kwargs.get("id")
+            return get_object_or_404(Proposal, id=id_)
+
+        def form_valid(self, form):
+            print(form.cleaned_data)
+            return super().form_valid(form)
 
 
 

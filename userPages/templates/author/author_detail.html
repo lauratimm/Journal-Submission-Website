@@ -50,6 +50,8 @@
     {% else %}
         <p>There are no Reviewed PDF's available yet</p>
     {% endif %}
+<br>
 
+    <p><a href="{% url 'update-submit' proposal.id %}">RESUBMIT</a></p>
 
 {% endblock %}

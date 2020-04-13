@@ -15,7 +15,7 @@ from . import views
 from website import settings
 from django.conf.urls.static import static
 
-from .views import author_view_journals, author_profile
+from .views import author_view_journals, author_profile, Author_Resubmit
 
 urlpatterns = [
     url('authorDash/', views.author),
@@ -25,7 +25,9 @@ urlpatterns = [
     path('proposal_list/', views.reviewer_view_proposals, name='Proposal View'),
     path('proposal/<int:pk>', views.ProposalDetailView.as_view(), name='proposal-detail'),
     path('upload/', views.create_profile, name = 'create'),
-    path('resubmit/', views.author_resubmit, name = 'resubmit'),
+    # path('resubmit/', views.author_resubmit, name = 'resubmit'),
+    path('journals/<int:id>/resubmit', views.Author_Resubmit.as_view(), name='update-submit'),
+    # path('journals/<int:pk>/good_resubmit', views.Author_Resubmit.as_view(), name='update-submit'),
     path('journals/', author_view_journals, name = 'Journal View'),
     path('journals/<int:pk>', views.AuthorDetailView.as_view(), name='journal-detail'),
     path('about/', author_profile, name = 'Author Profile'),
