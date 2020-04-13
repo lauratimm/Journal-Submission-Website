@@ -1,3 +1,8 @@
+<!--Author: Laura Timm-->
+<!--Date Added: April 2,2020-->
+<!--Updated: April 13, 2020-->
+<!--Updated by: Anna Chaykovska-->
+<!--Displays an individual journal detail-->
 {% extends 'authorDashboard.html' %}
 
 {% block head %}
@@ -11,6 +16,28 @@
 
     <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%">
         <p><strong>Original Author PDF File:</strong> <a href="{{ proposal.author_file.url }}">Author Submission</a></p></object>
+
+    {% if proposal.reviewer_1_comments != "none" %}
+    <p><strong>Reviewer 1 Comments:</strong></p>
+      <textarea readonly rows="10" cols="15" wrap="soft">
+      {{ proposal.reviewer_1_comment }}
+      </textarea>
+    {% endif %}
+
+    {% if proposal.reviewer_2_comments != "none" %}
+    <p><strong>Reviewer 2 Comments:</strong></p>
+      <textarea readonly rows="10" cols="15" wrap="soft">
+      {{ proposal.reviewer_2_comment }}
+      </textarea>
+    {% endif %}
+
+    {% if proposal.reviewer_3_comments != "none" %}
+    <p><strong>Reviewer 3 Comments:</strong></p>
+      <textarea readonly rows="10" cols="15" wrap="soft">
+      {{ proposal.reviewer_3_comment }}
+      </textarea>
+    {% endif %}
+
 
     {% if proposal.reviewer_1_file %}
 
