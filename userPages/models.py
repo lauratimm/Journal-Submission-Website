@@ -36,6 +36,7 @@ PAPER_STATUS = [
     ('Rejected', 'Rejected'),
     ]
 
+
 class Proposal(models.Model):
     author = models.ForeignKey(User, related_name='%(class)s_username_a', on_delete=models.SET_NULL, null=True)
     reviewer_1 = models.ForeignKey(User, related_name='%(class)s_username_r1', on_delete=models.SET_NULL, null=True)
@@ -47,6 +48,9 @@ class Proposal(models.Model):
     reviewer_1_file = models.FileField(null=True, blank=True)
     reviewer_2_file = models.FileField(null=True, blank=True)
     reviewer_3_file = models.FileField(null=True, blank=True)
+    reviewer_1_comment = models.TextField(max_length=12000, null=True, default='none')
+    reviewer_2_comment = models.TextField(max_length=12000, null=True, default='none')
+    reviewer_3_comment = models.TextField(max_length=12000, null=True, default='none')
     editor_comments = models.TextField(max_length=12000, null=True, default='none')
     status = models.TextField(choices=PAPER_STATUS, default="Submitted", max_length=20)
     due_date = models.DateTimeField(blank=True, null=True)

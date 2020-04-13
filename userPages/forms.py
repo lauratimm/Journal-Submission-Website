@@ -59,3 +59,32 @@ class Author_Resubmit_Form(forms.ModelForm):
             'author_resubmit',
         ]
 
+# Author: Anna Chaykovska
+# Date Created: April 12, 2020
+class Review_Submit_Form1(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields =[
+            'reviewer_1_comment',
+            'reviewer_1_file',
+        ]
+
+# Author: Anna Chaykovska
+# Date Created: April 13, 2020
+class Review_Submit_Form2(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields =[
+            'reviewer_2_comment',
+            'reviewer_2_file',
+        ]
+
+# Author: Anna Chaykovska
+# Date Created: April 13, 2020
+class Review_Submit_Form3(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields =[
+            'reviewer_3_comment',
+            'reviewer_3_file',
+        ]
