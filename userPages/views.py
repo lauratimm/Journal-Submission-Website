@@ -88,14 +88,19 @@ def editor(request):
 
 # Author: Anna Chaykovska
 # Date Created: April 8, 2020
-# Date Updated:
+# Date Updated: April 13, 2020
 # Shows the proposals to see for reviewer
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
 # required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def reviewer_view_proposals(request):
-    list_of_proposals = Proposal.objects.all()
+    current_user = request.user
+    list_of_proposals = Proposal.objects.filter(
+            Q(reviewer_1=current_user) |
+            Q(reviewer_2=current_user) |
+            Q(reviewer_3=current_user)
+    )
     context = {
         'list_of_proposals': list_of_proposals,
     }
@@ -106,7 +111,7 @@ def reviewer_view_proposals(request):
 # Source: https://docs.djangoproject.com/en/3.0/topics/db/queries/    -> Q
 # Author: Anna Chaykovska
 # Date Created: April 8, 2020
-# Date Updated: April 13, 2020
+# Date Updated:
 # Shows the proposals to see for reviewer
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
@@ -117,21 +122,6 @@ class ReviewerProposalListView(generic.ListView):
     context_object_name = 'Proposals to Review'
     template_name = 'reviewer/proposal_list.html'
 
-    def get_queryset(self):
-        all_q = Proposal.objects.get(
-            Q(reviewer_1_id=self.request.user_id) |
-            Q(reviewer_2_id=self.request.user_id) |
-            Q(reviewer_3_id=self.request.user_id)
-        )
-        # q1 = Proposal.objects.get(reviewer_1_id=self.request.user_id)
-        # q2 = Proposal.objects.get(reviewer_2_id=self.request.user_id)
-        # q3 = Proposal.objects.get(reviewer_3_id=self.request.user_id)
-        # all_q = q1 | q2 | q3
-        return all_q
-
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super().get_context_data(*args, **kwargs)
-    #     context['current reviewer'] =
 
 # Source: Laura Timm
 # Author: Anna Chaykovska

@@ -36,6 +36,7 @@ PAPER_STATUS = [
     ('Rejected', 'Rejected'),
     ]
 
+
 class Proposal(models.Model):
     author = models.ForeignKey(User, related_name='%(class)s_username_a', on_delete=models.SET_NULL, null=True)
     reviewer_1 = models.ForeignKey(User, related_name='%(class)s_username_r1', on_delete=models.SET_NULL, null=True)

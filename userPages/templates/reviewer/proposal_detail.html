@@ -13,15 +13,34 @@
     <p><strong>Due Date:</strong> {{proposal.due_date }}</p>
     <p><strong>Version:</strong> {{proposal.version }}</p>
     <p><strong>Abstract:</strong></p>
-    <textarea rows="15" cols="15" wrap="soft">
+    <textarea readonly rows="15" cols="15" wrap="soft">
     {{ proposal.abstract }}
     </textarea>
-    <!-- update comments to be only to the right reviewer -->
-    <p><strong>Your Current Comments:</strong></p>
-    <textarea rows="15" cols="15" wrap="soft">
-    {{ proposal.reviewer_1_comment }}
-    </textarea>
 
+    {% if user == proposal.reviewer_1%}
+      <!-- update comments to be only to the right reviewer -->
+      <p><strong>Your Current Comments:</strong></p>
+      <textarea readonly rows="15" cols="15" wrap="soft">
+      {{ proposal.reviewer_1_comment }}
+      </textarea>
+
+    {% elif user == proposal.reviewer_2%}
+      <!-- update comments to be only to the right reviewer -->
+      <p><strong>Your Current Comments:</strong></p>
+      <textarea readonly rows="15" cols="15" wrap="soft">
+      {{ proposal.reviewer_2_comment }}
+      </textarea>
+
+    {% elif user == proposal.reviewer_3%}
+      <!-- update comments to be only to the right reviewer -->
+      <p><strong>Your Current Comments:</strong></p>
+      <textarea readonly rows="15" cols="15" wrap="soft">
+      {{ proposal.reviewer_3_comment }}
+      </textarea>
+
+    {% else %}
+      <p><strong>Not able to view any comments for this paper.</strong></p>
+    {% endif %}
     <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%"> </object>
     <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">Author copy</a></p>
     <p><strong>To add review to file:</strong><a href="{% url 'add-review' proposal.id %}">Add a review</a></p>
