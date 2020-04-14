@@ -1,29 +1,59 @@
+<!--Author: Anna Chaykovska-->
+<!--Date Created: April 5, 2020-->
+<!--Date Updated: April 13, 2020-->
+<!--This page displays the details of the article that the reviewer chose-->
+
 {% extends 'reviewerDashboard.html' %}
 
 {% block head %}
   <h1>Title: {{ proposal.title}}</h1>
+  <div class="Home Journals">
+    <p><strong>Status:</strong> {{ proposal.status }}</p>
+    <p><strong>Upload Date:</strong> {{proposal.upload_date }}</p>
+    <p><strong>Due Date:</strong> {{proposal.due_date }}</p>
+    <p><strong>Version:</strong> {{proposal.version }}</p>
+    <p><strong>Abstract:</strong></p>
+    <textarea readonly rows="15" cols="15" wrap="soft">
+    {{ proposal.abstract }}
+    </textarea>
 
-  <p><strong>Status:</strong> {{ proposal.status }}</p> <!-- author detail link not yet defined -->
-  <p><strong>Abstract:</strong> {{ proposal.abstract }}</p>
-  <p><strong>Upload Date:</strong> {{proposal.upload_date }}</p>
-    <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%">
-  <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">HERE!</a></p>
+    {% if user == proposal.reviewer_1%}
+      <!-- update comments to be only to the right reviewer -->
+      <p><strong>Your Current Comments:</strong></p>
+      <textarea readonly rows="15" cols="15" wrap="soft">
+      {{ proposal.reviewer_1_comment }}
+      </textarea>
 
+    {% elif user == proposal.reviewer_2%}
+      <!-- update comments to be only to the right reviewer -->
+      <p><strong>Your Current Comments:</strong></p>
+      <textarea readonly rows="15" cols="15" wrap="soft">
+      {{ proposal.reviewer_2_comment }}
+      </textarea>
+
+    {% elif user == proposal.reviewer_3%}
+      <!-- update comments to be only to the right reviewer -->
+      <p><strong>Your Current Comments:</strong></p>
+      <textarea readonly rows="15" cols="15" wrap="soft">
+      {{ proposal.reviewer_3_comment }}
+      </textarea>
+
+    {% else %}
+      <p><strong>Not able to view any comments for this paper.</strong></p>
+    {% endif %}
+    <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%"> </object>
+    <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">Author copy</a></p>
+
+    {% if user == proposal.reviewer_1 %}
+      <p><strong>To add review to file:</strong><a href="{% url 'add-review-1' proposal.id %}">Add a review</a></p>
+    {% elif user == proposal.reviewer_2 %}
+      <p><strong>To add review to file:</strong><a href="{% url 'add-review-2' proposal.id %}">Add a review</a></p>
+    {% elif user == proposal.reviewer_3 %}
+      <p><strong>To add review to file:</strong><a href="{% url 'add-review-3' proposal.id %}">Add a review</a></p>
+    {% endif%}
+  </div>
 
 
   <div style="margin-left:20px;margin-top:20px">
-<!--    <h4>Copies</h4>-->
-
-<!--    {% for copy in book.bookinstance_set.all %}-->
-<!--      <hr>-->
-<!--      <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">-->
-<!--        {{ copy.get_status_display }}-->
-<!--      </p>-->
-<!--      {% if copy.status != 'a' %}-->
-<!--        <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>-->
-<!--      {% endif %}-->
-<!--      <p><strong>Imprint:</strong> {{ copy.imprint }}</p>-->
-<!--      <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>-->
-<!--    {% endfor %}-->
   </div>
 {% endblock %}

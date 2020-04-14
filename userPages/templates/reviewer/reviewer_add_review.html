@@ -1,22 +1,22 @@
-{#Source: https://data-flair.training/blogs/django-file-upload/#}
-{#Author: Laura Timm#}
-{#Date Created: March 29, 2020#}
-{#This is the upload file html page #}
-{% extends 'authorDashboard.html' %}
+<!--Author: Anna Chaykovska-->
+<!--Date Created: April 13, 2020-->
+<!--Date Updated:-->
+<!--This page displays a list of proposals available for the viewer-->
+
+{% extends 'reviewerDashboard.html' %}
 
 {% block head %}
-<!DOCTYPE html>
-<html>
+<div class="Home Journals">
     <head>
-        <title>Upload Journal Submission</title>
+        <title>Review This Paper</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
         <center>
-             <div class="Home Journals">
-                <h1> Resubmit File</h1>
-                        {% block replace %}
-                <h2>Please Fill in the Following to Upload File</h2>
+            <div class="jumbotron">
+                <h2 class="display-4">Add to the Review</h2>
+        {% block replace %}
+                <hr class="my-4">
 
                 <form method="POST" enctype="multipart/form-data">
                     <!-- Very Important csrf Token -->
@@ -26,9 +26,10 @@
                     </table><br>
                     <input type="submit" class="btn btn-primary btn-lg" name="register">
                 </form>
-             </div>
+            </div>
         </center>
         {% endblock %}
     </body>
-</html>
+</div>
+
 {% endblock %}

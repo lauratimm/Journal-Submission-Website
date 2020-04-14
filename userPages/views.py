@@ -1,7 +1,8 @@
+from django.db.models import Q
 from django.views import generic
-from userPages.models import Journal, Proposal, Institution, Comment
+from userPages.models import Proposal
 from django.http import FileResponse
-from userPages.forms import Profile_Form, Editor_Form, Author_Resubmit_Form
+from userPages.forms import Profile_Form, Editor_Form, Author_Resubmit_Form, Review_Submit_Form1,  Review_Submit_Form2, Review_Submit_Form3
 import io
 from reportlab.pdfgen import canvas
 from django.shortcuts import render, redirect, get_object_or_404
@@ -85,18 +86,33 @@ def editor(request):
     return render(request, 'editorDashboard.html', args)
 
 
+# Author: Anna Chaykovska
+# Date Created: April 8, 2020
+# Date Updated: April 13, 2020
+# Shows the proposals to see for reviewer
+
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
 # required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def reviewer_view_proposals(request):
-    list_of_proposals = Proposal.objects.all()
+    current_user = request.user
+    list_of_proposals = Proposal.objects.filter(
+            Q(reviewer_1=current_user) |
+            Q(reviewer_2=current_user) |
+            Q(reviewer_3=current_user)
+    )
     context = {
         'list_of_proposals': list_of_proposals,
     }
-
     # Return with the prefix of the directory where the file is
     return render(request, 'reviewer/proposal_list.html', context=context)
 
+
+# Source: https://docs.djangoproject.com/en/3.0/topics/db/queries/    -> Q
+# Author: Anna Chaykovska
+# Date Created: April 8, 2020
+# Date Updated:
+# Shows the proposals to see for reviewer
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
 # required the user to be logged in to navigate to the url of the page
@@ -106,10 +122,12 @@ class ReviewerProposalListView(generic.ListView):
     context_object_name = 'Proposals to Review'
     template_name = 'reviewer/proposal_list.html'
 
-    # def get_queryset(self):
-    #     # return Proposal.objects.filter(reviewer_1__icontains='id')
-    #     return Proposal.objects
 
+# Source: Laura Timm
+# Author: Anna Chaykovska
+# Date Created: April 8, 2020
+# Date Updated:
+# Shows information about an instance of the proposal
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
 # @login_required
@@ -117,6 +135,67 @@ class ProposalDetailView(generic.DetailView):
     model = Proposal
     template_name = 'reviewer/proposal_detail.html'
 
+
+# Source: Jeremey Stuart, Laura Timm
+# Author: Anna Chaykovska
+# Date Created: April 13, 2020
+# Date Updated:
+# This view is for the resubmission resubmission
+class Reviewer_Add_Review1(generic.UpdateView):
+        template_name = "reviewer/reviewer_add_review.html"
+        form_class = Review_Submit_Form1
+        success_url = '/proposal_list/'
+
+        def get_object(self):
+            id_ = self.kwargs.get("id")
+            return get_object_or_404(Proposal, id=id_)
+
+        def form_valid(self, form):
+            print(form.cleaned_data)
+            return super().form_valid(form)
+
+# Source: Jeremey Stuart, Laura Timm
+# Author: Anna Chaykovska
+# Date Created: April 13, 2020
+# Date Updated:
+# This view is for the resubmission resubmission
+class Reviewer_Add_Review2(generic.UpdateView):
+    template_name = "reviewer/reviewer_add_review.html"
+    form_class = Review_Submit_Form2
+    success_url = '/proposal_list/'
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Proposal, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+# Source: Jeremey Stuart, Laura Timm
+# Author: Anna Chaykovska
+# Date Created: April 13, 2020
+# Date Updated:
+# This view is for the resubmission resubmission
+class Reviewer_Add_Review3(generic.UpdateView):
+    template_name = "reviewer/reviewer_add_review.html"
+    form_class = Review_Submit_Form3
+    success_url = '/proposal_list/'
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Proposal, id=id_)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+
+# Source: Laura Timm
+# Author: Anna Chaykovska
+# Date Created: April 8, 2020
+# Date Updated:
+# Allows the reviewer to see the uploaded PDF
 
 # @user_passes_test(lambda u: u.groups.filter(name='Reviewer').exists())
 # required the user to be logged in to navigate to the url of the page
@@ -214,14 +293,11 @@ def author_view_journals(request):
 # @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
 # @login_required
 def author_profile(request):
-    profile = {
-    }
-
-def author_profile(request):
     list_of_journals = Proposal.objects.all()
     profile = {'list_of journals': list_of_journals,
     }
     return render(request, 'author/author_profile.html', context=profile)
+
 
 # Source: N/A
 # Author: Jeremy Stuart
@@ -257,6 +333,7 @@ class EditorSubmissionView(generic.DetailView):
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
+
 
 # Source: N/A
 # Author: Jeremy Stuart
@@ -343,9 +420,11 @@ def index(request):
         send_mail(subject, message, settings.EMAIL_HOST_USER, ['alexandratenney@hotmail.ca'], fail_silently=False)
         return render(request, '../FrontEnd/contactUs.html')
 
+
 def author_goodsubmit(request):
     list_of_proposals = Proposal.objects.all()
     context = {
         'list_of_proposals': list_of_proposals,
     }
     return render(request, 'author/good_resubmit.html', context)
+
