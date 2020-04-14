@@ -451,9 +451,14 @@ def index(request):
 
 
 def author_goodsubmit(request):
+    function1 = "Submit Paper"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/upload"
+    dashVariable2 = '/logout'
     list_of_proposals = Proposal.objects.all()
-    context = {
-        'list_of_proposals': list_of_proposals,
-    }
-    return render(request, 'author/good_resubmit.html', context)
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'list_of_proposals': list_of_proposals}
+    return render(request, 'author/good_resubmit.html', args)
 
