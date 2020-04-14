@@ -3,12 +3,18 @@ from userPages.models import Institution, Paper, Journal, Proposal, Comment
 from django.contrib.auth.models import User
 import datetime
 
+
+"""
+Author: Himika Dastidar
+source: https://www.youtube.com/watch?v=IKnp2ckuhzg
+
+"""
 class TestModels(TestCase):
 
     def setUp(self):
 
         '''
-        Create a institution object
+        Create a institution object ins 1
         '''
 
         self.ins1 = Institution.objects.create(name = 'University A',
@@ -17,6 +23,9 @@ class TestModels(TestCase):
         self.ins2 = Institution.objects.create(name = 'University of Calgary',
                                             address = '2500 University Dr. NW')
 
+        '''
+        Create user objects and assign them as author, reviewer and editor
+        '''
         self.author = User.objects.create_user(username = 'Theodore Dostoevsky')                    #Source https://docs.djangoproject.com/en/3.0/topics/auth/default/
 
         self.reviewer1 = User.objects.create_user(username = 'Jeremy Stuart')
@@ -27,14 +36,25 @@ class TestModels(TestCase):
 
         self.editor1 = User.objects.create_user(username = 'Alex Tenney')
 
+        '''
+        Create a paper object
+        '''
         self.testPaper = Paper.objects.create(author = self.author,
                                               version = 1,
                                               upload_date = datetime.datetime(2020, 1, 1))
 
+
+        '''
+        Create a journal object
+        
+        '''
         self.journal1 = Journal.objects.create(name = 'Nature',
                                                institution = 'University of Alberta',
                                                editor = self.editor1)
 
+        '''
+        Create a proposal object
+        '''
         self.proposal1 = Proposal.objects.create(author = self.author,
                                                  reviewer_1 = self.reviewer1,
                                                  reviewer_2 = self.reviewer2,
@@ -48,9 +68,15 @@ class TestModels(TestCase):
                                                 )
 
 
+    '''
+    test if institution returns the name properly
+    '''
     def test_institution_1(self):
         self.assertEquals(self.ins1.get_Name(), 'University A')
 
+     '''
+     test if institution name returns properly
+     '''
     def test_institution_2(self):
         self.assertEquals(self.ins2.get_Name(), 'University of Calgary')
 
