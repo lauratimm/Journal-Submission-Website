@@ -9,7 +9,7 @@
 {% extends 'editorDashboard.html' %}
 
 {% block head %}
-
+    <div class="Home Journals">
     <form action="" method="post">
     <!-- ALL POWER TO THE CSRF TOKEN -->
     {% csrf_token %}
@@ -19,9 +19,9 @@
   <p><strong>Upload Date:</strong> {{proposal.upload_date }}</p>
   <p><strong>Status:</strong> {{ proposal.status }}
   <p><strong>Abstract:</strong> {{ proposal.abstract }}</p>
-  <p><strong>Prefered Reviewer 1:</strong> {{proposal.reviewer_1_id }}</p>
-  <p><strong>Prefered Reviewer 2:</strong> {{proposal.reviewer_2_id }}</p>
-  <p><strong>Prefered Reviewer 3:</strong> {{proposal.reviewer_3_id }}</p>
+  <p><strong>Prefered Reviewer 1:</strong> {{proposal.reviewer_1 }}</p>
+  <p><strong>Prefered Reviewer 2:</strong> {{proposal.reviewer_2 }}</p>
+  <p><strong>Prefered Reviewer 3:</strong> {{proposal.reviewer_3 }}</p>
 
   <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">Click To Download!</a>
 
@@ -37,4 +37,5 @@
   <div style="margin-left:20px;margin-top:20px">
 
   </div>
+    </div>
 {% endblock %}

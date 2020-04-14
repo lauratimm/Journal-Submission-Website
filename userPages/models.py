@@ -92,6 +92,10 @@ class Proposal(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('journal-detail', args=[str(self.id)])
 
+    def get_editor_proposal(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('manage-proposal', args=[str(self.id)])
+
     def get_author(self):
         """Set up for testing"""
         return 'Author is: ' + str(self.author)

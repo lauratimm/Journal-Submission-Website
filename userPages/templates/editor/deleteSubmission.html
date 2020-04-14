@@ -9,11 +9,12 @@
 {% extends 'editorDashboard.html' %}
 
 {% block head %}
-
+    <div class="Home Journals">
     <form action='.' method="post">
         {% csrf_token %}
         <p><strong>Are you sure you want to delete the paper titled:</strong> "{{ object.title }}"?</p>
         <p><input type="submit" value="Yes"><a href="{% url 'Editor View' %}">Cancel </a></p>
     </form>
+    </div>
 
 {% endblock %}
