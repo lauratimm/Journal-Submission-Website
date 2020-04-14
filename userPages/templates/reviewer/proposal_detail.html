@@ -17,30 +17,49 @@
     {{ proposal.abstract }}
     </textarea>
 
-    {% if user == proposal.reviewer_1%}
+    {% if user == proposal.reviewer_1 %}
       <!-- update comments to be only to the right reviewer -->
       <p><strong>Your Current Comments:</strong></p>
       <textarea readonly rows="15" cols="15" wrap="soft">
       {{ proposal.reviewer_1_comment }}
       </textarea>
+      {% if proposal.reviewer_1_file %}
+        <object data="{{ proposal.reviewer_1_file.url }}" type="application/pdf" width="100%" height="100%"> </object>
+        <p><strong>Your file:</strong> <a href="{{ proposal.reviewer_1_file.url }}">View</a></p>
+      {% else %}
+        <p><strong>No PDF uploaded yet!</strong></p>
+      {% endif %}
 
-    {% elif user == proposal.reviewer_2%}
+    {% elif user == proposal.reviewer_2 %}
       <!-- update comments to be only to the right reviewer -->
       <p><strong>Your Current Comments:</strong></p>
       <textarea readonly rows="15" cols="15" wrap="soft">
       {{ proposal.reviewer_2_comment }}
       </textarea>
+      {% if proposal.reviewer_2_file %}
+        <object data="{{ proposal.reviewer_2_file.url }}" type="application/pdf" width="100%" height="100%"> </object>
+        <p><strong>Your file:</strong> <a href="{{ proposal.reviewer_2_file.url }}">View</a></p>
+      {% else %}
+        <p><strong>No PDF uploaded yet!</strong></p>
+      {% endif %}
 
-    {% elif user == proposal.reviewer_3%}
+    {% elif user == proposal.reviewer_3 %}
       <!-- update comments to be only to the right reviewer -->
       <p><strong>Your Current Comments:</strong></p>
       <textarea readonly rows="15" cols="15" wrap="soft">
       {{ proposal.reviewer_3_comment }}
       </textarea>
+      {% if proposal.reviewer_3_file %}
+        <object data="{{ proposal.reviewer_3_file.url }}" type="application/pdf" width="100%" height="100%"> </object>
+        <p><strong>Your file:</strong> <a href="{{ proposal.reviewer_3_file.url }}">View</a></p>
+      {% else %}
+        <p><strong>No PDF uploaded yet!</strong></p>
+      {% endif %}
 
     {% else %}
       <p><strong>Not able to view any comments for this paper.</strong></p>
     {% endif %}
+
     <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%"> </object>
     <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">Author copy</a></p>
 
