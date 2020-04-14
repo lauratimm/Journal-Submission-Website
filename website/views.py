@@ -81,3 +81,42 @@ def index(request):
         return render(request, 'contactUs.html', args)
     else:
         return render(request, 'contactUs.html', args)
+
+# when view.home is called will send to HomePage.html
+def journals(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages, including the dashboards
+    function1 = "Contact Us"
+    function2 = "Journals"
+    function3 = "About Us"
+    function4 = "Login"
+
+    #variables for the path of one of the buttons
+    dashVariable = "/contact"
+
+    #the dictionary that contains all the labels and pairs them as the value of their function within the
+    #tempalte
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable}
+
+    # Return with the prefix of the directory where the file is
+    return render(request, 'journals.html', args)
+
+def aboutus(request):
+    # the labels for all of the buttons, variables because this is a template and is inherited through-out
+    # the pages, including the dashboards
+    function1 = "Contact Us"
+    function2 = "Journals"
+    function3 = "About Us"
+    function4 = "Login"
+
+    #variables for the path of one of the buttons
+    dashVariable = "/contact"
+
+    #the dictionary that contains all the labels and pairs them as the value of their function within the
+    #tempalte
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable}
+
+    # Return with the prefix of the directory where the file is
+    return render(request, 'aboutus.html', args)
