@@ -25,6 +25,9 @@ urlpatterns = [
     url('accounts/', include('accounts.urls')),
 
     path('login/', views.loginRequest, name = 'loginrequest'),
+    path('journals/', views.journals, name='journals'),
+    path('aboutus/', views.aboutus, name='aboutus'),
+    path('contact/', views.index, name='contactus'),
     path('', views.home, name = 'home'),
     path('', include('userPages.urls'), name = 'userUrls'),
 

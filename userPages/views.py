@@ -95,17 +95,25 @@ def editor(request):
 # required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def reviewer_view_proposals(request):
+
     current_user = request.user
     list_of_proposals = Proposal.objects.filter(
             Q(reviewer_1=current_user) |
             Q(reviewer_2=current_user) |
             Q(reviewer_3=current_user)
     )
-    context = {
-        'list_of_proposals': list_of_proposals,
-    }
+    function1 = "Submitted Papers"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/proposal_list"
+    dashVariable2 = '/logout'
+
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'list_of_proposals': list_of_proposals}
+
     # Return with the prefix of the directory where the file is
-    return render(request, 'reviewer/proposal_list.html', context=context)
+    return render(request, 'reviewer/proposal_list.html', context=args)
 
 
 # Source: https://docs.djangoproject.com/en/3.0/topics/db/queries/    -> Q
@@ -230,6 +238,15 @@ def reviewer_pdf_view(request):
 FILE_TYPES = ['pdf']
 
 def create_profile(request):
+    function1 = "Submit Paper"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/upload"
+    dashVariable2 = '/logout'
+
+    num_proposal = Proposal.objects.only('')
+
     form = Profile_Form()
     if request.method == 'POST':
         form = Profile_Form(request.POST, request.FILES)
@@ -242,8 +259,10 @@ def create_profile(request):
                 return render(request, 'profile_maker/error.html')
             user_pr.save()
             return render(request, 'profile_maker/details.html', {'user_pr': user_pr})
-    context = {"form": form, }
-    return render(request, 'profile_maker/create.html', context)
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal,
+            "form": form}
+    return render(request, 'profile_maker/create.html', args)
 
 
 def some_view(request):
@@ -293,10 +312,20 @@ def author_view_journals(request):
 # @user_passes_test(lambda u: u.groups.filter(name='Author').exists())
 # @login_required
 def author_profile(request):
+    function1 = "Submit Paper"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/upload"
+    dashVariable2 = '/logout'
     list_of_journals = Proposal.objects.all()
-    profile = {'list_of journals': list_of_journals,
-    }
-    return render(request, 'author/author_profile.html', context=profile)
+
+    num_proposal = Proposal.objects.only('')
+
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal,
+            'list_of journals': list_of_journals}
+    return render(request, 'author/author_profile.html', context=args)
 
 
 # Source: N/A
