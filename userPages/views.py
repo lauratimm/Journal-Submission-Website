@@ -101,9 +101,16 @@ def reviewer_view_proposals(request):
             Q(reviewer_2=current_user) |
             Q(reviewer_3=current_user)
     )
-    context = {
-        'list_of_proposals': list_of_proposals,
-    }
+    function1 = "Submitted Papers"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/proposal_list"
+    dashVariable2 = '/logout'
+
+    context = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'list_of_proposals': list_of_proposals}
+
     # Return with the prefix of the directory where the file is
     return render(request, 'reviewer/proposal_list.html', context=context)
 
