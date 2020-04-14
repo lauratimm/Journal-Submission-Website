@@ -4,6 +4,16 @@ from django.shortcuts import render, redirect
 
 
 def newAccount_view(request):
+    function1 = "Contact Us"
+    function2 = "Journals"
+    function3 = "About Us"
+    function4 = "Login"
+
+    #variables for the path of one of the buttons
+    dashVariable = "/contact"
+
+    #the dictionary that contains all the labels and pairs them as the value of their function within the
+    #tempalte
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -15,7 +25,9 @@ def newAccount_view(request):
             return redirect('/login/')
     else:
         form = UserCreationForm()
-    return render(request, 'accounts/newAccount.html', {'form': form})
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'form': form}
+    return render(request, 'accounts/newAccount.html', args)
 
 
 # from django.shortcuts import render, redirect
