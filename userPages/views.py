@@ -398,9 +398,11 @@ def logout_view(request):
         logout(request)
         return redirect('/home/')
 
+
 class AuthorDetailView(generic.DetailView):
     model = Proposal
     template_name = 'author/author_detail.html'
+
 
 # Source: Jeremey Stuart
 # Author: Laura Timm

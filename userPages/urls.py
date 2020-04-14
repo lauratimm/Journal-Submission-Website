@@ -30,6 +30,7 @@ urlpatterns = [
 
     path('upload/', views.create_profile, name = 'create'),
     # path('resubmit/', views.author_resubmit, name = 'resubmit'),
+    path('journals/<int:pk>', views.AuthorDetailView.as_view(), name='journal-detail'),
     path('journals/<int:id>/resubmit', views.Author_Resubmit.as_view(), name='update-submit'),
     path('good_resubmit/', views.author_goodsubmit, name = 'good'),
     path('journals/', author_view_journals, name = 'Journal View'),
