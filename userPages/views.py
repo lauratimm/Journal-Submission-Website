@@ -30,11 +30,14 @@ def author(request):
     function4 = "Logout"
     dashVariable = "/upload"
     dashVariable2 = '/logout'
+    journalVariable = '/journal'
+    homeVariable = '/authorDash'
 
     num_proposal = Proposal.objects.only('')
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal,
+            'journalVariable': journalVariable, 'homeVariable': homeVariable}
 
 
     return render(request, 'authorDashboard.html', args)
@@ -57,9 +60,11 @@ def reviewer(request):
     function4 = "Logout"
     dashVariable = "/proposal_list"
     dashVariable2 = '/logout'
+    journalVariable = 'journal/'
+    homeVariable = 'reviewerDash/'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'journalVariable': journalVariable, 'homeVariable': homeVariable}
     return render(request, 'reviewerDashboard.html', args)
 
 # Source: https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
@@ -80,9 +85,12 @@ def editor(request):
     function4 = "Logout"
     dashVariable = "/viewReviews"
     dashVariable2 = '/logout'
+    journalVariable = 'journal/'
+    homeVariable = 'editorDash/'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'dashVariable2': dashVariable2}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'journalVariable': journalVariable,
+            'homeVariable': homeVariable}
     return render(request, 'editorDashboard.html', args)
 
 
@@ -108,9 +116,14 @@ def reviewer_view_proposals(request):
     function4 = "Logout"
     dashVariable = "/proposal_list"
     dashVariable2 = '/logout'
+    journalVariable = 'journal/'
+    homeVariable = 'reviewerDash/'
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'list_of_proposals': list_of_proposals}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'list_of_proposals': list_of_proposals,
+            'journalVariable': journalVariable,
+            'homeVariable': homeVariable
+            }
 
     # Return with the prefix of the directory where the file is
     return render(request, 'reviewer/proposal_list.html', context=args)
@@ -244,6 +257,8 @@ def create_profile(request):
     function4 = "Logout"
     dashVariable = "/upload"
     dashVariable2 = '/logout'
+    journalVariable = '/journal'
+    homeVariable = 'authorDash/'
 
     num_proposal = Proposal.objects.only('')
 
@@ -261,7 +276,7 @@ def create_profile(request):
             return render(request, 'profile_maker/details.html', {'user_pr': user_pr})
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
             'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal,
-            "form": form}
+            "form": form, 'journalVariable': journalVariable, 'homeVariable': homeVariable}
     return render(request, 'profile_maker/create.html', args)
 
 
@@ -296,11 +311,23 @@ def some_view(request):
 # required the user to be logged in to navigate to the url of the page
 @login_required(login_url='/login')
 def author_view_journals(request):
-    # Generate counts for proposals
+    function1 = "Submit Paper"
+    function2 = "Journals"
+    function3 = "Profile"
+    function4 = "Logout"
+    dashVariable = "/upload"
+    dashVariable2 = '/logout'
+    journalVariable = '/journal'
+    homeVariable = '/authorDash'
     num_proposals = Proposal.objects.all()
 
+    args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2,
+            'journalVariable': journalVariable, 'homeVariable': homeVariable, 'num_proposals': num_proposals}
+    # Generate counts for proposals
+
     # Return with the prefix of the directory where the file is
-    return render(request, 'author/journal_list.html', {'num_proposals': num_proposals})
+    return render(request, 'author/journal_list.html', args)
 
 
 # Source: N/A
@@ -318,13 +345,16 @@ def author_profile(request):
     function4 = "Logout"
     dashVariable = "/upload"
     dashVariable2 = '/logout'
+    journalVariable = 'journal/'
+    homeVariable = 'authorDash/'
     list_of_journals = Proposal.objects.all()
 
     num_proposal = Proposal.objects.only('')
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
             'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'num_proposal': num_proposal,
-            'list_of journals': list_of_journals}
+            'list_of journals': list_of_journals,  'journalVariable': journalVariable,
+            'homeVariable': homeVariable}
     return render(request, 'author/author_profile.html', context=args)
 
 
@@ -340,12 +370,15 @@ def editorManagement(request):
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
+    journalVariable = 'journal/'
+    homeVariable = 'editorDash/'
 
     # gets the title, status, and due date for all the papers
     paper_data = Proposal.objects.only('title', 'status', 'due_date')
 
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'paper_data': paper_data}
+            'dashVariable': dashVariable, 'paper_data': paper_data, 'journalVariable': journalVariable,
+            'homeVariable': homeVariable}
 
     return render(request, 'editor/editorManagement.html', args)
 
@@ -362,6 +395,8 @@ class EditorSubmissionView(generic.DetailView):
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
+    journalVariable = 'journal/'
+    homeVariable = 'editorDash/'
 
 
 # Source: N/A
@@ -376,12 +411,15 @@ def gotoDelete(request, id):
     function3 = "Profile"
     function4 = "Logout"
     dashVariable = "/viewReviews"
+    journalVariable = 'journal/'
+    homeVariable = 'editorDash/'
     obj = get_object_or_404(Proposal, id=id)
     if request.method == "POST":
         obj.delete()
         return redirect('../../../')
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, "object": obj}
+            'dashVariable': dashVariable, "object": obj, 'journalVariable': journalVariable,
+            'homeVariable': homeVariable}
 
     return render(request, 'editor/deleteSubmission.html', args)
 
@@ -457,8 +495,12 @@ def author_goodsubmit(request):
     function4 = "Logout"
     dashVariable = "/upload"
     dashVariable2 = '/logout'
+    journalVariable = 'journal/'
+    homeVariable = 'authorDash/'
     list_of_proposals = Proposal.objects.all()
     args = {'Function4': function4, 'Function1': function1, 'Function2': function2, 'Function3': function3,
-            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'list_of_proposals': list_of_proposals}
+            'dashVariable': dashVariable, 'dashVariable2': dashVariable2, 'list_of_proposals': list_of_proposals,
+            'journalVariable': journalVariable, 'homeVariable': homeVariable
+            }
     return render(request, 'author/good_resubmit.html', args)
 
