@@ -63,6 +63,11 @@
     <object data="{{ proposal.author_file.url }}" type="application/pdf" width="100%" height="100%"> </object>
     <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">Author copy</a></p>
 
+    {% if proposal.author_resubmit %}
+      <object data="{{ proposal.author_resubmit.url }}" type="application/pdf" width="100%" height="100%"> </object>
+      <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_resubmit.url }}">Author Resubmit</a></p>
+    {% endif %}
+
     {% if user == proposal.reviewer_1 %}
       <p><strong>To add review to file:</strong><a href="{% url 'add-review-1' proposal.id %}">Add a review</a></p>
     {% elif user == proposal.reviewer_2 %}

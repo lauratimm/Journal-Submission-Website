@@ -69,14 +69,14 @@ class TestModels(TestCase):
 
 
     '''
-    test if institution returns the name properly
+    # test if institution returns the name properly
     '''
     def test_institution_1(self):
         self.assertEquals(self.ins1.get_Name(), 'University A')
 
-     '''
+    '''
      test if institution name returns properly
-     '''
+    '''
     def test_institution_2(self):
         self.assertEquals(self.ins2.get_Name(), 'University of Calgary')
 

@@ -25,6 +25,11 @@
 
   <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_file.url }}">Click To Download!</a>
 
+    {% if proposal.author_resubmit %}
+      <object data="{{ proposal.author_resubmit.url }}" type="application/pdf" width="100%" height="100%"> </object>
+      <p><strong>Author Uploaded PDF File:</strong> <a href="{{ proposal.author_resubmit.url }}">Author Resubmit</a></p>
+    {% endif %}
+
   <p><strong>Set reviewers, due date, add comments:</strong> <a href="{% url 'update-values' proposal.id %}">Click Here!</a>
 
       <!-- would like this to be a button, not a link, but couldn't get it to work

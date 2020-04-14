@@ -44,7 +44,7 @@ def loginRequest(request):
                 return redirect('reviewerDash/')
             # if the user belongs to the group Editor, send them to the editor dashboard
             elif user.groups.filter(name='Editor').exists():
-                return redirect('editorDash/')
+                return redirect('editorMan/')
             # since author is the default, in all other cases send them to the author dashboard
             else:
                 return redirect('authorDash/')
@@ -76,7 +76,7 @@ def index(request):
     if request.method == 'POST':
         subject = request.POST['subject']
         message = request.POST['message']
-        send_mail(subject, message, settings.EMAIL_HOST_USER, ['alexandratenney@hotmail.ca'],
+        send_mail(subject, message, settings.EMAIL_HOST_USER, ['anna.chaykovska@ucalgary.ca'],
                   fail_silently=False)
         return render(request, 'contactUs.html', args)
     else:
